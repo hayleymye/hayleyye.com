@@ -13,18 +13,14 @@ body {
     padding: 2rem;
     text-align: left;
   }
-  .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+
   .logo {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 12px;
   }
+
   .section {
     margin-bottom: 40px;
   }
@@ -43,8 +39,9 @@ body {
   }
   
   nav {
+    margin: 4rem 0 0 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
     gap: 36px;
   }
 
@@ -52,7 +49,7 @@ body {
     font-size: 1.2rem;
     text-decoration: none;
     color: #222;
-    font-weight: 300;
+    font-weight: 400;
     transition: color 0.3s ease;
   }
   
@@ -62,5 +59,6 @@ body {
   }
   .inline {
     margin: 0;
+    font-weight: 300;
     text-decoration: underline;
   }
