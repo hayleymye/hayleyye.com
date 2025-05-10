@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Field Mapping</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+</head>
+
+<body>
+    <main class="container">
+        <br>
+        <div class="section">
+            <a href="../index.html"><- Home</a>
+        </div>
+
+        <div class="section">
+            <h1>Field Mapping</h1>
+            <h4><a href="https://merge.dev" target="_blank" class="inline">Merge</a>, 2024</h4>
+            <p class="">Empowering enterprise users with flexible, self-serve
+                data mapping across integrations.</p>
+            <img src="../assets/field-mapping/hero.jpg" width="100%">
+        </div>
+
+        <div class="section">
+            <h2 class="">Project Overview &amp; Introduction</h2>
+            <p class="">In 2022, Merge faced a key integration challenge:
+                <strong>how to handle non-standard data across diverse third-party platforms</strong>.
+            </p>
+            <p class="">Accessing custom data is critical for customers with
+                enterprise end users because they rely on systems with specialized data needs that go beyond Merge's
+                Common Models. Enterprise platforms are rarely one-size-fits-all, and having the flexibility to extend
+                or modify data fields allows businesses to tailor integrations to their specific workflows.</p>
+            <p class="">To address the limited flexibility of Merge's
+                standardized data models, we launched a beta version of Field Mapping in 2023 to a few selected
+                customers. These customers gave us important feedback and insight into how we could make Field Mapping
+                more user-friendly and comprehensive. Through iteration and redesign, this feature grew into a
+                full-fledged Field Mapping platform that is a <strong>flagship feature</strong> today and is used by
+                <strong>over half</strong> of Merge's Professional and Enterprise organizations and supports
+                <strong>6,000+ mapping instances</strong> across (as of November 2024).
+            </p>
+            <p class=""><em>Although I led the design of Field Mapping from
+                    its conception in 2022 , this case study focuses on the latest iterations of the feature from
+                    2024.</em></p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class="">The Challenge</h2>
+            <p class="">Merge's <strong>Common Models</strong> (like
+                <code>Employee</code>, <code>Ticket</code>, <code>Candidate</code>, etc.) standardize data across
+                platforms such as BambooHR, Zendesk, and Greenhouse. But every platform—and often every company—has
+                <strong>custom fields</strong> unique to their use case, such as:
+            </p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">"T-shirt size" on an employee record</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">"Urgency score" on a support ticket</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">"Lead source" on a CRM contact</li>
+            </ul>
+            <p class="">Without support for custom fields:</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">This data is <strong>inaccessible</strong> through Merge.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Integrators must build custom logic <strong>outside</strong> of Merge.
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">It breaks the promise of a "unified API" for real-world use cases.</li>
+            </ul>
+            <p class="">Our goal was to make <strong>custom data mapping
+                    intuitive, accurate, and scalable</strong>—whether users were mapping an employee's personal email
+                or transforming nested JSON fields across platforms like Workday, BambooHR, and Salesforce.</p>
+            <!-- <br> -->
+            <h3 class="">My Role</h3>
+            <p class=""><strong>I was the sole product designer on this
+                    project</strong>, responsible for leading the end-to-end design process from discovery and user
+                research to prototyping and final handoff. I collaborated closely with a cross-functional team that
+                included a product manager, product marketing manager, post-sales, and several software engineers.</p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class=""><strong>Research</strong></h2>
+            <p class="">We collaborated with Merge's Field Mapping power users
+                to conduct workflow observations and analyze support tickets to identify pain points.</p>
+            <p class="">See prototypes of the initial beta version of Field Mapping below. <em>Note: Remote Fields
+                    were called "Origin Fields" in the beta version.</em></p>
+            <style>
+                @media (min-width: 768px) {
+                    .image-grid {
+                        display: flex;
+                        gap: 12px;
+                    }
+                    .image-item {
+                        flex: 1;
+                    }
+                }
+                
+                @media (max-width: 767px) {
+                    .image-grid {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                    }
+                    .image-item {
+                        width: 100%;
+                    }
+                    .image-item img {
+                        width: 100% !important;
+                    }
+                }
+            </style>
+
+            <div class="image-grid">
+                <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                    onclick="openModal('../assets/field-mapping/beta-dashboard-LA.gif', 'Dashboard: Linked Account-level mapping')">
+                    <img src="../assets/field-mapping/beta-dashboard-LA.gif"
+                        alt="beta prototype of dashboard Linked Account-level"
+                        style="width: 100%; height: 200px; object-fit: contain;">
+                    <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Dashboard: Linked Account-level
+                        mapping</p>
+                </div>
+                <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                    onclick="openModal('../assets/field-mapping/beta-dashboard-org.gif', 'Dashboard: Organization-level target fields')">
+                    <img src="../assets/field-mapping/beta-dashboard-org.gif"
+                        alt="beta prototype of dashboard organization-level target fields"
+                        style="width: 100%; height: 200px; object-fit: contain;">
+                    <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Dashboard: Organization-level target
+                        fields</p>
+                </div>
+                <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                    onclick="openModal('../assets/field-mapping/beta-link.gif', 'Merge Link: End-user mapping interface')">
+                    <img src="../assets/field-mapping/beta-link.gif" alt="beta prototype of Merge Link"
+                        style="width: 100%; height: 200px; object-fit: contain;">
+                    <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Merge Link: End-user mapping
+                        interface</p>
+                </div>
+            </div>
+
+            <div id="imageModal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000;">
+                <span
+                    style="position: absolute; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer;"
+                    onclick="closeModal()">&times;</span>
+                <div
+                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 95%; height: 95%;">
+                    <img id="modalImage" style="width: 100%; height: 90%; object-fit: contain;">
+                    <p id="modalCaption" style="color: white; margin-top: 20px; font-size: 1rem;"></p>
+                </div>
+            </div>
+
+            <script>
+                function openModal(imgSrc, caption) {
+                    document.getElementById('imageModal').style.display = 'block';
+                    document.getElementById('modalImage').src = imgSrc;
+                    document.getElementById('modalCaption').textContent = caption;
+                    document.addEventListener('keydown', handleEscKey);
+                }
+
+                function closeModal() {
+                    document.getElementById('imageModal').style.display = 'none';
+                    document.removeEventListener('keydown', handleEscKey);
+                }
+
+                function handleEscKey(event) {
+                    if (event.key === 'Escape') {
+                        closeModal();
+                    }
+                }
+            </script>
+            <h3 class="">Key Problems We Identified:</h3>
+            <ol type="1" class="numbered-list" start="1">
+                <li>There were <strong>too many options on the initial screen</strong>, leading to choice overload. We
+                    had multiple buttons for adding a mapping to ensure users could create any type of mapping for any
+                    Common Model, but this abundance of choices left users feeling confused and overwhelmed—especially
+                    given that Field Mapping was a completely new concept they were still learning to grasp.</li>
+            </ol>
+            <ol type="1" class="numbered-list" start="2">
+                <li>Customers had built thousands of mappings manually, a sign of <strong>high need but also high
+                        friction. </strong>We found that many use cases require custom fields that are the same across
+                    an integration. </li>
+            </ol>
+            <ol type="1" class="numbered-list" start="3">
+                <li>End users couldn't easily self-configure mappings because the Merge Link UI (end-user interface) for
+                    Field Mapping was <strong>outdated and unintuitive, </strong>blocking them from customizing
+                    integrations and limiting the feature's scalability.</li>
+            </ol>
+            <ol type="1" class="numbered-list" start="4">
+                <li>Users did <strong>not feel confident</strong> in choosing the right third-party field. Not all
+                    integrations support human-readable field names (for example, a typical field name in Workday:
+                    <code
+                        class="long">wd:Worker_Data.wd:Employment_Data.wd:Worker_Job_Data.wd:Position_Data.wd:Job_Profile_Summary_Data.wd:Management_Level_Reference</code>)
+                    and companies often deprecate and replace fields as they grow. Field names can be
+                    <strong>unclear</strong>, and the field type and endpoint were <strong>not enough context</strong>
+                    for users to trust their selections. Users would map a field, wait for data re-sync to see what
+                    value was returned, and then update the mapping if the value was not what they expected.
+                </li>
+            </ol>
+            <ol type="1" class="numbered-list" start="5">
+                <li>Customers struggled to map <strong>nested or complex fields </strong>(e.g.,
+                    <code>List[object]</code>), requiring them to build custom logic outside of Merge, which is the
+                    problem Field Mapping (and Merge's Unified APIs overall) sought to address in the very beginning.
+                    This issue was particularly common in enterprise applications like Workday, NetSuite, and
+                    Salesforce, where custom objects can be complex and extensive, making it difficult to isolate
+                    specific fields.
+                </li>
+            </ol>
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class=""><strong>Ideation &amp; Solution</strong></h2>
+            <p class="">Design prototypes were tested with feedback loops
+                across engineering, post-sales, and selected customers. After some iteration, we came up with the
+                following solutions to address the key problems identified above. </p>
+            <img src="../assets/field-mapping/whiteboard.jpeg" width="100%">
+            <h3 class="">1. Simplified mapping flow</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We streamlined the dashboard view to only show relevant information
+                    and reimagined the mapping flow experience to better fit the user journey.
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">The default view for Linked Account Field Mapping is now primarily for
+                    viewing all existing
+                    mappings. A single primary colored button at the top right lets users know where to take action.
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Users start by choosing the type of mapping they want to create → then
+                    selecting the Remote Field they want → then selecting or creating a target Common Model field → then
+                    validating their selection.</li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+            <h3 class="">2. Integration-wide mappings</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We introduced the ability to create integration-wide mappings (vs.
+                    Linked Account-specific) to improve scalability.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Users can create a mapping that will be automatically applied to all
+                    new Linked Accounts for a given integration.</li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+            <h3 class="">3. Wide Merge Link interface</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">After successfully implementing a wider screen for another Merge Link
+                    feature, we applied the same approach to Field Mapping to display more information, making the
+                    experience more self-serve.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We overhauled the Link interface to allow for more intuitive
+                    left-to-right mapping (like in the dashboard) instead of vertical mapping.</li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+            <h3 class="">4. Remote Field coverage and example values</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We added more information to the Remote Fields dropdown to increase
+                    confidence and provide users with more context about each field before they create and commit to a
+                    mapping.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Coverage</strong> is a percentage value that provides
+                    visibility into how often a Remote Field appears across synced objects. The higher the percentage,
+                    the more likely the field is what the user is looking for.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Example values</strong> provide visibility into what data is
+                    actually going to be synced. If the value is <code>null</code> or unexpected, the field is likely
+                    not what the user is looking for.</li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+            <h3 class="">5. Preview values</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We added a small input to allow users to instantly preview real values
+                    for each mapping in the dashboard to easily double check their mappings at a glance. The values
+                    would replace the endpoint so that the visual change would not cause each card's height to increase
+                    jarringly. </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><em>I originally wanted the input to be a dropdown of human-readable
+                        objects that users could scroll through and select, to eliminate the need to retrieve an object
+                        ID and reduce errors, but we were limited by engineering resources and this solution addressed
+                        the customer need while also being easy to implement.</em></li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+            <h3 class="">6. Advanced Mapping with JMESPath</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We added an optional Advanced Mapping step to the mapping flow to
+                    enable users to access nested fields and apply unique business logic within the dashboard</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We decided to use JMESPath, a query language for JSON, because even
+                    though most customer use cases could be solved by indexing on the <code>List[object]</code> , the
+                    order can change so mapping via index can cause errors. </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">We implemented an easy <strong>click-to-generate query</strong>
+                    functionality to simplify the Advanced Mapping experience for most users, but still gave users the
+                    flexibility to write their own complex queries if necessary.</li>
+            </ul>
+            <p class="">🖼️ image coming soon!</p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class=""><strong>Final Design</strong></h2>
+            <p class="">The final product consists of three tightly integrated modules, each designed to support different aspects of the Field Mapping experience.</p>
+            <h3>Merge Dashboard</h3>
+            <p><em>For customers:</em> Full control over creating, editing, and managing mappings.</p>
+            <p><strong>Linked Account level</strong></p>
+            <p>🖼️ image coming soon!</p>
+            <p><strong>Organization/integration level</strong></p>
+            <p>🖼️ image coming soon!</p>
+            <h3>Merge Link</h3>
+            <p><em>For end users:</em> An intuitive, guided interface for setting up mappings, including support for advanced logic.</p>
+            <p>🖼️ image coming soon!</p>
+            <h3>Documentation</h3>
+            <p><em>For customers and prospects:</em> A comprehensive guide to understand and implement Field Mapping effectively.</p>
+            <a href="https://docs.merge.dev/supplemental-data/field-mappings/overview/" target="_blank">See Merge Docs -></a>
+            <br>
+            <br>
+            <img src="../assets/field-mapping/docs-diagram.png" width="100%">
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class=""><strong>Insights &amp; Impact</strong></h2>
+            <h3 class="">What We Learned:</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Providing clear, contextual information <strong>builds user
+                        trust</strong> and <strong>reduces mapping errors:</strong>
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">Feature enhancements like <strong>coverage
+                                indicators</strong> and <strong>example values</strong> increased user confidence when
+                            selecting fields.</li>
+                    </ul>
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">Being able to see <strong>real data</strong> from mappings
+                            further increased user confidence. </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Simplify</strong> the experience for regular users, and allow
+                    <strong>advanced configurations</strong> for power users:<ul class="bulleted-list">
+                        <li style="list-style-type:circle">The streamlined mapping flow allows users to more easily and
+                            quickly create mappings.</li>
+                    </ul>
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">For those willing to learn, using a query language like
+                            JMESPath makes Field Mapping flexible and powerful enough for complex use cases.</li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Change is good</strong>—things don't have to remain the way
+                    they have always been:<ul class="bulleted-list">
+                        <li style="list-style-type:circle">The initial design of Field Mapping in Merge Link was narrow
+                            simply because that was what we were used to, not because it was the best user experience.
+                        </li>
+                    </ul>
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">After testing the wider Link UI and talking to customers, it
+                            proved to be a much better experience and no one even mentioned anything about the wider
+                            screen being unfamiliar.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3 class="">Results:</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Field Mapping <strong>usage grew by 50% </strong>from Q1 to Q3 2024.
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Reduced support tickets</strong> related to incorrect mappings
+                    and syncing errors.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">One customer saw a <strong>2x increase</strong> in Field Mapping
+                    adoption after UI improvements.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">The enhanced Field Mapping feature made Merge more <strong>appealing to
+                        enterprise clients </strong>seeking customizable integration solutions.</li>
+            </ul>
+        </div>
+        <hr />
+        <div class="section">
+            <h2 class="">Final Thoughts</h2>
+            <p class="">Field Mapping is perhaps the most meaningful project
+                of my career so far. I started brainstorming for the initial concept just a few months after joining
+                Merge in 2022 and continued iterating on it through each update, until the most recent one in December
+                2024. As I grew as a designer, I constantly found new ways to improve the feature, iterating on both the
+                interface and the user experience.</p>
+            <p class="">Reflecting on the process, I would have dedicated more
+                time to user testing during the beta phase. Due to tight deadlines, we prioritized shipping quickly,
+                relying on hypotheses rather than user validation. Although the final version is successful, gathering
+                feedback earlier could have accelerated these improvements.</p>
+            <p class="">This project not only greatly enhanced Merge's product
+                offering but also deepened my ability to design intuitive, scalable solutions for complex data
+                scenarios. Leading Field Mapping from concept to flagship feature taught me how to build products that
+                empower enterprise users.</p>
+        </div>
+
+        <nav>
+            <a class="nav" href="https://drive.google.com/file/d/1Db4muiipyI5Rl645pSvjpg58gsTP486j/view?usp=sharing"
+                target="_blank">Resume</a>
+            <a class="nav" href="https://www.linkedin.com/in/hayley-ye/" target="_blank">LinkedIn</a>
+            <a class="nav" href="mailto:hayleymye@gmail.com">Email</a>
+        </nav>
+
+    </main>
+</body>
+
+</html>

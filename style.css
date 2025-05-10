@@ -7,9 +7,85 @@ body {
     color: #222;
   }
   
+  /* text styles */
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+  strong {
+    font-weight: 500;
+  }
+
+  hr {
+    border: 0.05px solid #828282;
+    margin: 2rem 0;
+  }
+
+  li {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  code {
+    background-color: #e8e8e8;
+    font-size: 90%;
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+  code.long {
+    word-break: break-all;
+  }
+
+  /* links */
+
+  a {
+    /* font-size: 1.1rem; */
+    text-decoration: none;
+    color: #222;
+    /* font-weight: 400; */
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #ED660C;
+    font-style: italic;
+  }
+  .inline {
+    margin: 0;
+    /* font-weight: 300; */
+    text-decoration: underline;
+  }
+
+  /* spacing  */
+
   .container {
-    max-width: 900px;
-    margin: 1vh auto;
+    max-width: 800px;
+    margin: 5vh auto;
     padding: 2rem;
     text-align: left;
   }
@@ -25,40 +101,20 @@ body {
     margin-bottom: 40px;
   }
   
-  h1 {
-    font-size: 2rem;
-    font-weight: 500;
-    /* margin-bottom: 1rem; */
-  }
-  
-  p {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    font-weight: 300;
-    margin: 0 0 12px 0;
-  }
-  
   nav {
-    margin: 4rem 0 0 0;
+    margin: 6rem 0 0 0;
     display: flex;
     flex-direction: row; 
     gap: 36px;
+    flex-wrap: wrap;
   }
 
-  a {
-    font-size: 1.2rem;
-    text-decoration: none;
-    color: #222;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #ED660C;
-    font-style: italic;
-  }
-  .inline {
+  hr.row {
     margin: 0;
-    font-weight: 300;
-    text-decoration: underline;
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
