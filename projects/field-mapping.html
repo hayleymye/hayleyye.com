@@ -180,10 +180,13 @@
             </script>
             <h3 class="">Key Problems We Identified:</h3>
             <ol type="1" class="numbered-list" start="1">
-                <li>There were <strong>too many options on the initial screen</strong>, leading to choice overload. We
-                    had multiple buttons for adding a mapping to ensure users could create any type of mapping for any
-                    Common Model, but this abundance of choices left users feeling confused and overwhelmed—especially
-                    given that Field Mapping was a completely new concept they were still learning to grasp.</li>
+                <li>There were <strong>too many options on the initial screen</strong>, leading to choice overload.
+                    <p>We had multiple buttons for adding a mapping to ensure users could create any type of mapping for
+                        any
+                        Common Model, but this abundance of choices left users feeling confused and
+                        overwhelmed—especially
+                        given that Field Mapping was a completely new concept they were still learning to grasp.</p>
+                </li>
             </ol>
             <ol type="1" class="numbered-list" start="2">
                 <li>Customers had built thousands of mappings manually, a sign of <strong>high need but also high
@@ -196,23 +199,26 @@
                     integrations and limiting the feature's scalability.</li>
             </ol>
             <ol type="1" class="numbered-list" start="4">
-                <li>Users did <strong>not feel confident</strong> in choosing the right third-party field. Not all
-                    integrations support human-readable field names (for example, a typical field name in Workday:
-                    <code
-                        class="long">wd:Worker_Data.wd:Employment_Data.wd:Worker_Job_Data.wd:Position_Data.wd:Job_Profile_Summary_Data.wd:Management_Level_Reference</code>)
-                    and companies often deprecate and replace fields as they grow. Field names can be
-                    <strong>unclear</strong>, and the field type and endpoint were <strong>not enough context</strong>
-                    for users to trust their selections. Users would map a field, wait for data re-sync to see what
-                    value was returned, and then update the mapping if the value was not what they expected.
+                <li>Users did <strong>not feel confident</strong> in choosing the right third-party field.
+                    <p>Not all integrations support human-readable field names (for example, a typical field name in
+                        Workday:
+                        <code
+                            class="long">wd:Worker_Data.wd:Employment_Data.wd:Worker_Job_Data.wd:Position_Data.wd:Job_Profile_Summary_Data.wd:Management_Level_Reference</code>)
+                        and companies often deprecate and replace fields as they grow. Field names can be
+                        <strong>unclear</strong>, and the field type and endpoint were <strong>not enough
+                            context</strong>
+                        for users to trust their selections. Users would map a field, wait for data re-sync to see what
+                        value was returned, and then update the mapping if the value was not what they expected.
+                    </p>
                 </li>
             </ol>
             <ol type="1" class="numbered-list" start="5">
                 <li>Customers struggled to map <strong>nested or complex fields </strong>(e.g.,
                     <code>List[object]</code>), requiring them to build custom logic outside of Merge, which is the
                     problem Field Mapping (and Merge's Unified APIs overall) sought to address in the very beginning.
-                    This issue was particularly common in enterprise applications like Workday, NetSuite, and
-                    Salesforce, where custom objects can be complex and extensive, making it difficult to isolate
-                    specific fields.
+                    <p>This issue was particularly common in enterprise applications like Workday, NetSuite, and
+                        Salesforce, where custom objects can be complex and extensive, making it difficult to isolate
+                        specific fields.</p>
                 </li>
             </ol>
         </div>
@@ -250,8 +256,8 @@
                 Linked Account-specific) to improve scalability.</p>
             <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
                 onclick="openModal('../assets/field-mapping/integration-wide-mapping.gif', 'Integration-wide mappings at the organization level')">
-                <img src="../assets/field-mapping/integration-wide-mapping.gif" alt="gif of integration-wide mappings prototype"
-                    style="width: 100%; object-fit: contain;">
+                <img src="../assets/field-mapping/integration-wide-mapping.gif"
+                    alt="gif of integration-wide mappings prototype" style="width: 100%; object-fit: contain;">
                 <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Integration-wide mappings at the
                     organization level</p>
             </div>
@@ -317,8 +323,8 @@
                 enable users to access nested fields and apply unique business logic within the dashboard</p>
             <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
                 onclick="openModal('../assets/field-mapping/advanced-mapping.gif', 'Advanced Mapping with JMESPath')">
-                <img src="../assets/field-mapping/advanced-mapping.gif" alt="gif of advanced mapping with JMESPath prototype"
-                    style="width: 100%; object-fit: contain;">
+                <img src="../assets/field-mapping/advanced-mapping.gif"
+                    alt="gif of advanced mapping with JMESPath prototype" style="width: 100%; object-fit: contain;">
                 <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Advanced Mapping with JMESPath</p>
             </div>
             <ul class="bulleted-list">
@@ -356,6 +362,22 @@
         <div class="section">
             <h2 class=""><strong>Insights &amp; Impact</strong></h2>
             <h3 class="">What We Learned:</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Validate with users early</strong> to avoid post-launch
+                    adjustments:
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">Many of the insights we gained from the initial beta version
+                            now seem obvious, but they could have been identified earlier if we had invested time in
+                            user testing during the initial design process. </li>
+                    </ul>
+                    <ul class="bulleted-list">
+                        <li style="list-style-type:circle">Due to tight deadlines, we prioritized shipping quickly,
+                            relying on assumptions rather than validation. While the final version is a success,
+                            incorporating user feedback earlier would have made the iteration process more efficient.
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Providing clear, contextual information <strong>builds user
                         trust</strong> and <strong>reduces mapping errors:</strong>
@@ -415,22 +437,6 @@
             </ul>
         </div>
         <hr />
-        <div class="section">
-            <h2 class="">Final Thoughts</h2>
-            <p class="">Field Mapping is perhaps the most meaningful project
-                of my career so far. I started brainstorming for the initial concept just a few months after joining
-                Merge in 2022 and continued iterating on it through each update, until the most recent one in December
-                2024. As I grew as a designer, I constantly found new ways to improve the feature, iterating on both the
-                interface and the user experience.</p>
-            <p class="">Reflecting on the process, I would have dedicated more
-                time to user testing during the beta phase. Due to tight deadlines, we prioritized shipping quickly,
-                relying on hypotheses rather than user validation. Although the final version is successful, gathering
-                feedback earlier could have accelerated these improvements.</p>
-            <p class="">This project not only greatly enhanced Merge's product
-                offering but also deepened my ability to design intuitive, scalable solutions for complex data
-                scenarios. Leading Field Mapping from concept to flagship feature taught me how to build products that
-                empower enterprise users.</p>
-        </div>
 
         <nav>
             <a class="nav" href="https://drive.google.com/file/d/1Db4muiipyI5Rl645pSvjpg58gsTP486j/view?usp=sharing"
