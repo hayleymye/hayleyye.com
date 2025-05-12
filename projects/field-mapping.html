@@ -89,7 +89,7 @@
         <div class="section">
             <h2 class=""><strong>Research</strong></h2>
             <p class="">We collaborated with Merge's Field Mapping power users
-                to conduct workflow observations and analyze support tickets to identify pain points.</p>
+                to conduct workflow observations and analyzed support tickets to identify pain points.</p>
             <p class="">See prototypes of the initial beta version of Field Mapping below. <em>Note: Remote Fields
                     were called "Origin Fields" in the beta version.</em></p>
             <style>
@@ -222,17 +222,22 @@
             <p class="">Design prototypes were tested with feedback loops
                 across engineering, post-sales, and selected customers. After some iteration, we came up with the
                 following solutions to address the key problems identified above. </p>
-            <img src="../assets/field-mapping/whiteboard.jpeg" width="100%">
+            <img src="../assets/field-mapping/whiteboard.jpeg" width="100%"
+                alt="whiteboard sketches of Field Mapping ideation">
             <h3 class="">1. Simplified mapping flow</h3>
-            <ul class="bulleted-list">
-                <li style="list-style-type:disc">We streamlined the dashboard view to only show relevant information
-                    and reimagined the mapping flow experience to better fit the user journey.
-                </li>
-            </ul>
+            <p>We streamlined the dashboard view to only show relevant information
+                and reimagined the mapping flow experience to better fit the user journey.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/simplified-mapping-flow.gif', 'Simplified mapping flow')">
+                <img src="../assets/field-mapping/simplified-mapping-flow.gif" alt="gif of simplified mapping flow"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Simplified mapping flow</p>
+            </div>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">The default view for Linked Account Field Mapping is now primarily for
                     viewing all existing
-                    mappings. A single primary colored button at the top right lets users know where to take action.
+                    mappings. A single primary colored button at the top right lets users know where and how to take
+                    action.
                 </li>
             </ul>
             <ul class="bulleted-list">
@@ -240,34 +245,44 @@
                     selecting the Remote Field they want → then selecting or creating a target Common Model field → then
                     validating their selection.</li>
             </ul>
-            <p class="">🖼️ image coming soon!</p>
             <h3 class="">2. Integration-wide mappings</h3>
-            <ul class="bulleted-list">
-                <li style="list-style-type:disc">We introduced the ability to create integration-wide mappings (vs.
-                    Linked Account-specific) to improve scalability.</li>
-            </ul>
+            <p>We introduced the ability to create integration-wide mappings (vs.
+                Linked Account-specific) to improve scalability.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/integration-wide-mapping.gif', 'Integration-wide mappings at the organization level')">
+                <img src="../assets/field-mapping/integration-wide-mapping.gif" alt="gif of integration-wide mappings prototype"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Integration-wide mappings at the
+                    organization level</p>
+            </div>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Users can create a mapping that will be automatically applied to all
                     new Linked Accounts for a given integration.</li>
             </ul>
-            <p class="">🖼️ image coming soon!</p>
             <h3 class="">3. Wide Merge Link interface</h3>
+            <p>We overhauled and widened the Merge Link interface to allow for more intuitive
+                left-to-right mapping (like in the dashboard) instead of vertical mapping.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/wide-link.gif', 'Wide Merge Link interface')">
+                <img src="../assets/field-mapping/wide-link.gif" alt="gif of wide Merge Link interface prototype"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Wide Merge Link interface</p>
+            </div>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">After successfully implementing a wider screen for another Merge Link
                     feature, we applied the same approach to Field Mapping to display more information, making the
                     experience more self-serve.</li>
             </ul>
-            <ul class="bulleted-list">
-                <li style="list-style-type:disc">We overhauled the Link interface to allow for more intuitive
-                    left-to-right mapping (like in the dashboard) instead of vertical mapping.</li>
-            </ul>
-            <p class="">🖼️ image coming soon!</p>
             <h3 class="">4. Remote Field coverage and example values</h3>
-            <ul class="bulleted-list">
-                <li style="list-style-type:disc">We added more information to the Remote Fields dropdown to increase
-                    confidence and provide users with more context about each field before they create and commit to a
-                    mapping.</li>
-            </ul>
+            <p>We added more information to the Remote Fields dropdown to increase
+                confidence and provide users with more context about each field before they create and commit to a
+                mapping.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/remote-fields-dropdown.png', 'Remote Fields dropdown')">
+                <img src="../assets/field-mapping/remote-fields-dropdown.png" alt="Remote Fields dropdown"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Remote Fields dropdown</p>
+            </div>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc"><strong>Coverage</strong> is a percentage value that provides
                     visibility into how often a Remote Field appears across synced objects. The higher the percentage,
@@ -278,13 +293,18 @@
                     actually going to be synced. If the value is <code>null</code> or unexpected, the field is likely
                     not what the user is looking for.</li>
             </ul>
-            <p class="">🖼️ image coming soon!</p>
             <h3 class="">5. Preview values</h3>
+            <p>We added a small input to allow users to instantly preview real values
+                for each mapping in the dashboard to easily double check their mappings at a glance.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/preview-values.gif', 'Preview mapping values')">
+                <img src="../assets/field-mapping/preview-values.gif" alt="gif of preview mapping values prototype"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Preview mapping values</p>
+            </div>
             <ul class="bulleted-list">
-                <li style="list-style-type:disc">We added a small input to allow users to instantly preview real values
-                    for each mapping in the dashboard to easily double check their mappings at a glance. The values
-                    would replace the endpoint so that the visual change would not cause each card's height to increase
-                    jarringly. </li>
+                <li style="list-style-type:disc">The preview values replace the endpoint so that the visual change does
+                    not cause each card's height to increase jarringly. </li>
             </ul>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc"><em>I originally wanted the input to be a dropdown of human-readable
@@ -292,12 +312,15 @@
                         ID and reduce errors, but we were limited by engineering resources and this solution addressed
                         the customer need while also being easy to implement.</em></li>
             </ul>
-            <p class="">🖼️ image coming soon!</p>
             <h3 class="">6. Advanced Mapping with JMESPath</h3>
-            <ul class="bulleted-list">
-                <li style="list-style-type:disc">We added an optional Advanced Mapping step to the mapping flow to
-                    enable users to access nested fields and apply unique business logic within the dashboard</li>
-            </ul>
+            <p>We added an optional Advanced Mapping step to the mapping flow to
+                enable users to access nested fields and apply unique business logic within the dashboard</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/field-mapping/advanced-mapping.gif', 'Advanced Mapping with JMESPath')">
+                <img src="../assets/field-mapping/advanced-mapping.gif" alt="gif of advanced mapping with JMESPath prototype"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Advanced Mapping with JMESPath</p>
+            </div>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">We decided to use JMESPath, a query language for JSON, because even
                     though most customer use cases could be solved by indexing on the <code>List[object]</code> , the
@@ -308,7 +331,6 @@
                     functionality to simplify the Advanced Mapping experience for most users, but still gave users the
                     flexibility to write their own complex queries if necessary.</li>
             </ul>
-            <p class="">🖼️ image coming soon!</p>
         </div>
         <hr />
         <div class="section">
@@ -317,9 +339,6 @@
                 different aspects of the Field Mapping experience.</p>
             <h3>Merge Dashboard</h3>
             <p><em>For customers:</em> Full control over creating, editing, and managing mappings.</p>
-            <p><strong>Linked Account level</strong></p>
-            <p>🖼️ image coming soon!</p>
-            <p><strong>Organization/integration level</strong></p>
             <p>🖼️ image coming soon!</p>
             <h3>Merge Link</h3>
             <p><em>For end users:</em> An intuitive, guided interface for setting up mappings, including support for
@@ -379,7 +398,7 @@
             </ul>
             <h3 class="">Results:</h3>
             <ul class="bulleted-list">
-                <li style="list-style-type:disc">Field Mapping <strong>usage grew by 50% </strong>from Q1 to Q3 2024.
+                <li style="list-style-type:disc">Field Mapping <strong>usage grew by 50% </strong>from Q1 to Q4 2024.
                 </li>
             </ul>
             <ul class="bulleted-list">
