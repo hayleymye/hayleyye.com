@@ -1,2 +1,2 @@
 # hayleyye.com
-Hayley's personal website, built with HTML and CSS.
+Hayley's personal website, built with HTML, CSS, and JavaScript.
