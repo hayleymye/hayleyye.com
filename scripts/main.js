@@ -31,7 +31,7 @@ const loader = new GLTFLoader();
 loader.load('model/model.gltf', (gltf) => {
     const model = gltf.scene;
     // Make the model bigger and position it
-    model.scale.set(10, 10, 10);
+    model.scale.set(20, 20, 20);
     model.position.set(0, 2, 0);
     scene.add(model);
     console.log('Model loaded successfully');
@@ -46,8 +46,8 @@ loader.load('model/model.gltf', (gltf) => {
 
     // Mousemove interaction
     document.addEventListener('mousemove', (e) => {
-        const x = (window.innerWidth / 2 - e.clientX) / 300;
-        const y = (window.innerHeight / 2 - e.clientY) / 300;
+        const x = -(window.innerWidth / 2 - e.clientX) / 300;
+        const y = -(window.innerHeight / 2 - e.clientY) / 300;
         model.rotation.x = y;
         model.rotation.y = x;
     });
