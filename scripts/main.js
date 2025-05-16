@@ -110,7 +110,7 @@ loader.load('model/paindemie.gltf', (gltf) => {
     // Animation loop
     function animate() {
         requestAnimationFrame(animate);
-        // model.rotation.y += 0.005;
+        model.rotation.y += 0.005;
         renderer.render(scene, camera);
     }
     animate();
