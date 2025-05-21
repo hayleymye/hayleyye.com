@@ -5,7 +5,7 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 const scene = new THREE.Scene();
 // scene.background = new THREE.Color("#f9f9f9");
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 1, 5); // Move the camera back
+camera.position.set(0, 1, 5);
 
 //environment setup
 //plain white cube map
@@ -23,7 +23,8 @@ scene.background = new THREE.Color("#f9f9f9");
 
 //renderer setup
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+// renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearAlpha(0);
 
 //enable shadows
 renderer.shadowMap.enabled = true;
@@ -31,10 +32,11 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 //add renderer to model container
 const container = document.getElementById("model-container");
+renderer.setSize(container.clientWidth, container.clientHeight);
 container.appendChild(renderer.domElement);
 
 //lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 15); // Soft ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 15);
 scene.add(ambientLight);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 1.5);
@@ -46,11 +48,11 @@ directionalLight.castShadow = true;
 scene.add(directionalLight);
 
 const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight2.position.set(-8, 5, 5); // Opposite side
+directionalLight2.position.set(-8, 5, 5);
 scene.add(directionalLight2);
 
 const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight3.position.set(0, -3, -10); // From behind
+directionalLight3.position.set(0, -3, -10);
 scene.add(directionalLight3)
 
 //ground plane
@@ -64,10 +66,10 @@ scene.add(ground);
 
 //material
 const material = new THREE.MeshPhysicalMaterial({
-    color: 0xF3F5E1,       // Base color (white)
-    metalness: 0.98,          // Full metallic effect
-    roughness: 0.3,        // Slightly shiny
-    reflectivity: 0.95,     // High reflectivity for a chrome-like look
+    color: 0xF3F5E1,
+    metalness: 0.98,
+    roughness: 0.3,
+    reflectivity: 0.95,
     // clearcoat: 1,     
     // clearcoatRoughness: 0, 
     envMap: plainWhiteCubeMap,
@@ -75,8 +77,8 @@ const material = new THREE.MeshPhysicalMaterial({
 
 //update model scale based on screen width
 function updateModelScale(model) {
-    const minScale = 20;
-    const maxScale = 40;
+    const minScale = 25;
+    const maxScale = 50;
     const scaleFactor = THREE.MathUtils.clamp((window.innerWidth / 1920) * maxScale, minScale, maxScale);
     model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 }
