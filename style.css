@@ -5,18 +5,6 @@ body {
   padding: 0;
   background-color: #f9f9f9;
   color: #222;
-  height: 100%;
-  position: relative;
-}
-html {
-  height: 100%;
-  position: relative;
-}
-
-main {
-  position: relative;
-  z-index: 1;
-  padding-top: 2rem;
 }
 
 /* text styles */
@@ -103,23 +91,16 @@ a:hover {
   margin: 5vh auto;
   padding: 2rem;
   text-align: left;
-  position: relative;
 }
 
 #model-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
   width: 100%;
   height: 30vh;
-  /* height: auto; */
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f9f9f9;
   padding-bottom: 2rem;
-  overflow: hidden;
 }
 
 .logo {
@@ -151,11 +132,8 @@ hr.row {
   align-items: center;
 }
 
-canvas {
+/* canvas {
+  width: 100%;
+  height: 100%;
   display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-}
+} */

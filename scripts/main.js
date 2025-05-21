@@ -3,12 +3,11 @@ import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/l
 
 //scene setup
 const scene = new THREE.Scene();
-// scene.background = new THREE.Color("#f9f9f9");
+scene.background = new THREE.Color("#f9f9f9");
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 1, 5);
+camera.position.set(0, 1, 5); // Move the camera back
 
-//environment setup
-//plain white cube map
+//environment setup plain white cube map
 const plainWhiteCubeMap = new THREE.CubeTextureLoader().load([
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/CE6LAAAAABJRU5ErkJggg==',
     'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/CE6LAAAAABJRU5ErkJggg==',
@@ -19,24 +18,21 @@ const plainWhiteCubeMap = new THREE.CubeTextureLoader().load([
 ]);
 
 scene.environment = plainWhiteCubeMap;
-scene.background = new THREE.Color("#f9f9f9");
 
 //renderer setup
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-// renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearAlpha(0);
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+//add renderer to model container
+const container = document.getElementById("model-container");
+container.appendChild(renderer.domElement);
 
 //enable shadows
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-//add renderer to model container
-const container = document.getElementById("model-container");
-renderer.setSize(container.clientWidth, container.clientHeight);
-container.appendChild(renderer.domElement);
-
 //lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 15);
+const ambientLight = new THREE.AmbientLight(0xffffff, 15); // Soft ambient light
 scene.add(ambientLight);
 
 const hemiLight = new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 1.5);
@@ -48,11 +44,11 @@ directionalLight.castShadow = true;
 scene.add(directionalLight);
 
 const directionalLight2 = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight2.position.set(-8, 5, 5);
+directionalLight2.position.set(-8, 5, 5); // Opposite side
 scene.add(directionalLight2);
 
 const directionalLight3 = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight3.position.set(0, -3, -10);
+directionalLight3.position.set(0, -3, -10); // From behind
 scene.add(directionalLight3)
 
 //ground plane
@@ -77,8 +73,8 @@ const material = new THREE.MeshPhysicalMaterial({
 
 //update model scale based on screen width
 function updateModelScale(model) {
-    const minScale = 25;
-    const maxScale = 50;
+    const minScale = 20;
+    const maxScale = 40;
     const scaleFactor = THREE.MathUtils.clamp((window.innerWidth / 1920) * maxScale, minScale, maxScale);
     model.scale.set(scaleFactor, scaleFactor, scaleFactor);
 }
