@@ -101,6 +101,8 @@ a:hover {
   align-items: center;
   background-color: #f9f9f9;
   padding-bottom: 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .logo {
@@ -112,6 +114,8 @@ a:hover {
 
 .section {
   margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
 }
 
 nav {
