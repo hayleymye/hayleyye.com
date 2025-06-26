@@ -1,0 +1,1192 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Merge Docs Redesign</title>
+	<style>
+		/* cspell:disable-file */
+		/* webkit printing magic: print all background colors */
+		html {
+			-webkit-print-color-adjust: exact;
+		}
+
+		* {
+			box-sizing: border-box;
+			-webkit-print-color-adjust: exact;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		@media only screen {
+			body {
+				margin: 2em auto;
+				max-width: 900px;
+				color: rgb(55, 53, 47);
+			}
+		}
+
+		body {
+			line-height: 1.5;
+			white-space: pre-wrap;
+		}
+
+		a,
+		a.visited {
+			color: inherit;
+			text-decoration: underline;
+		}
+
+		.pdf-relative-link-path {
+			font-size: 80%;
+			color: #444;
+		}
+
+		h1,
+		h2,
+		h3 {
+			letter-spacing: -0.01em;
+			line-height: 1.2;
+			font-weight: 600;
+			margin-bottom: 0;
+		}
+
+		.page-title {
+			font-size: 2.5rem;
+			font-weight: 700;
+			margin-top: 0;
+			margin-bottom: 0.75em;
+		}
+
+		h1 {
+			font-size: 1.875rem;
+			margin-top: 1.875rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+			margin-top: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.25rem;
+			margin-top: 1.25rem;
+		}
+
+		.source {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+			padding: 1.5em;
+			word-break: break-all;
+		}
+
+		.callout {
+			border-radius: 3px;
+			padding: 1rem;
+		}
+
+		figure {
+			margin: 1.25em 0;
+			page-break-inside: avoid;
+		}
+
+		figcaption {
+			opacity: 0.5;
+			font-size: 85%;
+			margin-top: 0.5em;
+		}
+
+		mark {
+			background-color: transparent;
+		}
+
+		.indented {
+			padding-left: 1.5em;
+		}
+
+		hr {
+			background: transparent;
+			display: block;
+			width: 100%;
+			height: 1px;
+			visibility: visible;
+			border: none;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		@media only print {
+			img {
+				max-height: 100vh;
+				object-fit: contain;
+			}
+		}
+
+		@page {
+			margin: 1in;
+		}
+
+		.collection-content {
+			font-size: 0.875rem;
+		}
+
+		.column-list {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.column {
+			padding: 0 1em;
+		}
+
+		.column:first-child {
+			padding-left: 0;
+		}
+
+		.column:last-child {
+			padding-right: 0;
+		}
+
+		.table_of_contents-item {
+			display: block;
+			font-size: 0.875rem;
+			line-height: 1.3;
+			padding: 0.125rem;
+		}
+
+		.table_of_contents-indent-1 {
+			margin-left: 1.5rem;
+		}
+
+		.table_of_contents-indent-2 {
+			margin-left: 3rem;
+		}
+
+		.table_of_contents-indent-3 {
+			margin-left: 4.5rem;
+		}
+
+		.table_of_contents-link {
+			text-decoration: none;
+			opacity: 0.7;
+			border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid rgba(55, 53, 47, 0.09);
+			border-collapse: collapse;
+		}
+
+		table {
+			border-left: none;
+			border-right: none;
+		}
+
+		th,
+		td {
+			font-weight: normal;
+			padding: 0.25em 0.5em;
+			line-height: 1.5;
+			min-height: 1.5em;
+			text-align: left;
+		}
+
+		th {
+			color: rgba(55, 53, 47, 0.6);
+		}
+
+		ol,
+		ul {
+			margin: 0;
+			margin-block-start: 0.6em;
+			margin-block-end: 0.6em;
+		}
+
+		li>ol:first-child,
+		li>ul:first-child {
+			margin-block-start: 0.6em;
+		}
+
+		ul>li {
+			list-style: disc;
+		}
+
+		ul.to-do-list {
+			padding-inline-start: 0;
+		}
+
+		ul.to-do-list>li {
+			list-style: none;
+		}
+
+		.to-do-children-checked {
+			text-decoration: line-through;
+			opacity: 0.375;
+		}
+
+		ul.toggle>li {
+			list-style: none;
+		}
+
+		ul {
+			padding-inline-start: 1.7em;
+		}
+
+		ul>li {
+			padding-left: 0.1em;
+		}
+
+		ol {
+			padding-inline-start: 1.6em;
+		}
+
+		ol>li {
+			padding-left: 0.2em;
+		}
+
+		.mono ol {
+			padding-inline-start: 2em;
+		}
+
+		.mono ol>li {
+			text-indent: -0.4em;
+		}
+
+		.toggle {
+			padding-inline-start: 0em;
+			list-style-type: none;
+		}
+
+		/* Indent toggle children */
+		.toggle>li>details {
+			padding-left: 1.7em;
+		}
+
+		.toggle>li>details>summary {
+			margin-left: -1.1em;
+		}
+
+		.selected-value {
+			display: inline-block;
+			padding: 0 0.5em;
+			background: rgba(206, 205, 202, 0.5);
+			border-radius: 3px;
+			margin-right: 0.5em;
+			margin-top: 0.3em;
+			margin-bottom: 0.3em;
+			white-space: nowrap;
+		}
+
+		.collection-title {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.page-description {
+			margin-bottom: 2em;
+		}
+
+		.simple-table {
+			margin-top: 1em;
+			font-size: 0.875rem;
+			empty-cells: show;
+		}
+
+		.simple-table td {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table th {
+			height: 29px;
+			min-width: 120px;
+		}
+
+		.simple-table-header-color {
+			background: rgb(247, 246, 243);
+			color: black;
+		}
+
+		.simple-table-header {
+			font-weight: 500;
+		}
+
+		time {
+			opacity: 0.5;
+		}
+
+		.icon {
+			display: inline-block;
+			max-width: 1.2em;
+			max-height: 1.2em;
+			text-decoration: none;
+			vertical-align: text-bottom;
+			margin-right: 0.5em;
+		}
+
+		img.icon {
+			border-radius: 3px;
+		}
+
+		.user-icon {
+			width: 1.5em;
+			height: 1.5em;
+			border-radius: 100%;
+			margin-right: 0.5rem;
+		}
+
+		.user-icon-inner {
+			font-size: 0.8em;
+		}
+
+		.text-icon {
+			border: 1px solid #000;
+			text-align: center;
+		}
+
+		.page-cover-image {
+			display: block;
+			object-fit: cover;
+			width: 100%;
+			max-height: 30vh;
+		}
+
+		.page-header-icon {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+
+		.page-header-icon-with-cover {
+			margin-top: -0.72em;
+			margin-left: 0.07em;
+		}
+
+		.page-header-icon img {
+			border-radius: 3px;
+		}
+
+		.link-to-page {
+			margin: 1em 0;
+			padding: 0;
+			border: none;
+			font-weight: 500;
+		}
+
+		p>.user {
+			opacity: 0.5;
+		}
+
+		td>.user,
+		td>time {
+			white-space: nowrap;
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+			margin-right: 0.6em;
+			vertical-align: middle;
+		}
+
+		p {
+			margin-top: 0.5em;
+			margin-bottom: 0.5em;
+		}
+
+		.image {
+			border: none;
+			margin: 1.5em 0;
+			padding: 0;
+			border-radius: 0;
+			text-align: center;
+		}
+
+		.code,
+		code {
+			background: rgba(135, 131, 120, 0.15);
+			border-radius: 3px;
+			padding: 0.2em 0.4em;
+			border-radius: 3px;
+			font-size: 85%;
+			tab-size: 2;
+		}
+
+		code {
+			color: #eb5757;
+		}
+
+		.code {
+			padding: 1.5em 1em;
+		}
+
+		.code-wrap {
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.code>code {
+			background: none;
+			padding: 0;
+			font-size: 100%;
+			color: inherit;
+		}
+
+		blockquote {
+			font-size: 1.25em;
+			margin: 1em 0;
+			padding-left: 1em;
+			border-left: 3px solid rgb(55, 53, 47);
+		}
+
+		.bookmark {
+			text-decoration: none;
+			max-height: 8em;
+			padding: 0;
+			display: flex;
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.bookmark-title {
+			font-size: 0.85em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 1.75em;
+			white-space: nowrap;
+		}
+
+		.bookmark-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.bookmark-info {
+			flex: 4 1 180px;
+			padding: 12px 14px 14px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.bookmark-image {
+			width: 33%;
+			flex: 1 1 180px;
+			display: block;
+			position: relative;
+			object-fit: cover;
+			border-radius: 1px;
+		}
+
+		.bookmark-description {
+			color: rgba(55, 53, 47, 0.6);
+			font-size: 0.75em;
+			overflow: hidden;
+			max-height: 4.5em;
+			word-break: break-word;
+		}
+
+		.bookmark-href {
+			font-size: 0.75em;
+			margin-top: 0.25em;
+		}
+
+		.sans {
+			font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+		}
+
+		.code {
+			font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+		}
+
+		.serif {
+			font-family: Lyon-Text, Georgia, ui-serif, serif;
+		}
+
+		.mono {
+			font-family: iawriter-mono, Nitti, Menlo, Courier, monospace;
+		}
+
+		.pdf .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .sans {
+			font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR';
+		}
+
+		.pdf .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .code {
+			font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.pdf .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .serif {
+			font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR';
+		}
+
+		.pdf .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP';
+		}
+
+		.pdf:lang(zh-CN) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC';
+		}
+
+		.pdf:lang(zh-TW) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC';
+		}
+
+		.pdf:lang(ko-KR) .mono {
+			font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR';
+		}
+
+		.highlight-default {
+			color: rgba(50, 48, 44, 1);
+		}
+
+		.highlight-gray {
+			color: rgba(115, 114, 110, 1);
+			fill: rgba(115, 114, 110, 1);
+		}
+
+		.highlight-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.highlight-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.highlight-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.highlight-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.highlight-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.highlight-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.highlight-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.highlight-red {
+			color: rgba(205, 60, 58, 1);
+			fill: rgba(205, 60, 58, 1);
+		}
+
+		.highlight-default_background {
+			color: rgba(50, 48, 44, 1);
+		}
+
+		.highlight-gray_background {
+			background: rgba(248, 248, 247, 1);
+		}
+
+		.highlight-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.highlight-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.highlight-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.highlight-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.highlight-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.highlight-purple_background {
+			background: rgba(248, 243, 252, 1);
+		}
+
+		.highlight-pink_background {
+			background: rgba(252, 241, 246, 1);
+		}
+
+		.highlight-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.block-color-default {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray {
+			color: rgba(115, 114, 110, 1);
+			fill: rgba(115, 114, 110, 1);
+		}
+
+		.block-color-brown {
+			color: rgba(159, 107, 83, 1);
+			fill: rgba(159, 107, 83, 1);
+		}
+
+		.block-color-orange {
+			color: rgba(217, 115, 13, 1);
+			fill: rgba(217, 115, 13, 1);
+		}
+
+		.block-color-yellow {
+			color: rgba(203, 145, 47, 1);
+			fill: rgba(203, 145, 47, 1);
+		}
+
+		.block-color-teal {
+			color: rgba(68, 131, 97, 1);
+			fill: rgba(68, 131, 97, 1);
+		}
+
+		.block-color-blue {
+			color: rgba(51, 126, 169, 1);
+			fill: rgba(51, 126, 169, 1);
+		}
+
+		.block-color-purple {
+			color: rgba(144, 101, 176, 1);
+			fill: rgba(144, 101, 176, 1);
+		}
+
+		.block-color-pink {
+			color: rgba(193, 76, 138, 1);
+			fill: rgba(193, 76, 138, 1);
+		}
+
+		.block-color-red {
+			color: rgba(205, 60, 58, 1);
+			fill: rgba(205, 60, 58, 1);
+		}
+
+		.block-color-default_background {
+			color: inherit;
+			fill: inherit;
+		}
+
+		.block-color-gray_background {
+			background: rgba(248, 248, 247, 1);
+		}
+
+		.block-color-brown_background {
+			background: rgba(244, 238, 238, 1);
+		}
+
+		.block-color-orange_background {
+			background: rgba(251, 236, 221, 1);
+		}
+
+		.block-color-yellow_background {
+			background: rgba(251, 243, 219, 1);
+		}
+
+		.block-color-teal_background {
+			background: rgba(237, 243, 236, 1);
+		}
+
+		.block-color-blue_background {
+			background: rgba(231, 243, 248, 1);
+		}
+
+		.block-color-purple_background {
+			background: rgba(248, 243, 252, 1);
+		}
+
+		.block-color-pink_background {
+			background: rgba(252, 241, 246, 1);
+		}
+
+		.block-color-red_background {
+			background: rgba(253, 235, 236, 1);
+		}
+
+		.select-value-color-uiBlue {
+			background-color: undefined;
+		}
+
+		.select-value-color-pink {
+			background-color: rgba(225, 136, 179, 0.27);
+		}
+
+		.select-value-color-purple {
+			background-color: rgba(168, 129, 197, 0.27);
+		}
+
+		.select-value-color-green {
+			background-color: rgba(123, 183, 129, 0.27);
+		}
+
+		.select-value-color-gray {
+			background-color: rgba(84, 72, 49, 0.15);
+		}
+
+		.select-value-color-translucentGray {
+			background-color: undefined;
+		}
+
+		.select-value-color-orange {
+			background-color: rgba(224, 124, 57, 0.27);
+		}
+
+		.select-value-color-brown {
+			background-color: rgba(210, 162, 141, 0.35);
+		}
+
+		.select-value-color-red {
+			background-color: rgba(244, 171, 159, 0.4);
+		}
+
+		.select-value-color-yellow {
+			background-color: rgba(236, 191, 66, 0.39);
+		}
+
+		.select-value-color-blue {
+			background-color: rgba(93, 165, 206, 0.27);
+		}
+
+		.select-value-color-pageGlass {
+			background-color: undefined;
+		}
+
+		.select-value-color-washGlass {
+			background-color: undefined;
+		}
+
+		.checkbox {
+			display: inline-flex;
+			vertical-align: text-bottom;
+			width: 16;
+			height: 16;
+			background-size: 16px;
+			margin-left: 2px;
+			margin-right: 5px;
+		}
+
+		.checkbox-on {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+
+		.checkbox-off {
+			background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+		}
+	</style>
+</head>
+
+<body>
+	<article id="215a3508-bfcd-8046-8c67-c8c5e6a50921" class="page sans">
+		<header>
+			<h1 class="page-title">Merge Docs Redesign</h1>
+			<p class="page-description"></p>
+		</header>
+		<div class="page-body">
+			<p id="216a3508-bfcd-8008-861f-f71e44193f4d" class="">Merge, 2024</p>
+			<p id="216a3508-bfcd-8061-b606-fc8f16ec4e24" class="">one-liner…</p>
+			<p id="216a3508-bfcd-80e5-a477-ddb5873ee3d6" class="">🖼️ [hero image]</p>
+			<h2 id="215a3508-bfcd-80dd-a49b-c135d2fda60f" class="">Project Overview &amp; Introduction</h2>
+			<p id="215a3508-bfcd-8088-9baf-f1bd8af66656" class="block-color-default_background"><mark
+					class="highlight-default_background">As Merge’s API and feature set grew, so did the complexity of
+					its developer documentation. </mark>While the content was valuable, users—both customers and
+				prospects—found it hard to navigate without guidance. I reimagined the information architecture and
+				narrative structure of Merge Docs to <strong>support self-service, reduce post-sales burden, and better
+					align with how users actually learn about Merge</strong>. Making Merge Docs a more intuitive,
+				self-serviced product would not only provide a better user experience, but also drive more
+				<strong>top-of-funnel conversion</strong> and <strong>reduce costs to scale</strong>. </p>
+			<p id="215a3508-bfcd-802a-8b3c-d55cc6aeccd8" class="">Although the redesign was not ultimately implemented,
+				this work provided great insights into how we could use storytelling, structure, and navigation to
+				support different user journeys.</p>
+			<hr id="215a3508-bfcd-8099-9d66-d57e423c5ced" />
+			<h2 id="215a3508-bfcd-80bb-8682-c9be8e6d23d7" class="">The Challenge</h2>
+			<p id="215a3508-bfcd-8097-a282-cb53a90366b1" class="">Merge’s documentation is dense and technically rich
+				but not intuitive to navigate. From my user research, I learned that customers and prospects rely
+				heavily on support from the Merge team to learn more about the product.</p>
+			<p id="215a3508-bfcd-8002-a4aa-d6fed24462f7" class="">The goal was to make Merge Docs a truly
+				<strong>self-serve product</strong> and design a documentation experience that supports two distinct
+				user journeys:</p>
+			<ul id="215a3508-bfcd-804e-a949-fc94f88b0f2c" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Prospects</strong> looking to understand what Merge does and
+					whether it fits their needs.</li>
+			</ul>
+			<ul id="215a3508-bfcd-8007-8164-fb68eb3fdecc" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Customers</strong> looking for implementation details and
+					troubleshooting help.</li>
+			</ul>
+			<h3 id="21ba3508-bfcd-80c5-9565-cc6796609599" class="">My Role</h3>
+			<p id="216a3508-bfcd-803c-a614-dffe27d50d19" class="">I initiated this project independently after noticing
+				recurring friction points in navigating our documentation. I was the sole designer responsible for the
+				ideation, user research synthesis, and proposed redesign of the Docs experience.</p>
+			<p id="216a3508-bfcd-802b-bfb3-e30f4ea45966" class="">Although this project was mostly a solo effort, I
+				partnered closely with:</p>
+			<ul id="216a3508-bfcd-80ac-8b52-c86df12fb571" class="bulleted-list">
+				<li style="list-style-type:disc">A product manager who guided me through writing my first product spec
+				</li>
+			</ul>
+			<ul id="216a3508-bfcd-80c1-b175-f71713556ac9" class="bulleted-list">
+				<li style="list-style-type:disc">Solutions engineers and members of the post-sales team, who provided
+					valuable insights into common user pain points and helped validate user journeys</li>
+			</ul>
+			<p id="216a3508-bfcd-8019-9123-f32def5519be" class="">This was a self-driven effort to improve a core user
+				experience that hadn’t previously been prioritized, and it became a valuable opportunity to stretch both
+				my product thinking and storytelling skills. </p>
+			<hr id="215a3508-bfcd-80e6-b37b-d251f635b1da" />
+			<h2 id="215a3508-bfcd-8085-ade0-d6fddc7fbc97" class="">Research</h2>
+			<p id="215a3508-bfcd-8032-98e0-fbb6538a74fa" class="">I analyzed data from Fullstory and conducted
+				interviews with Merge’s solutions engineers and post-sales to gain insight into how users currently
+				learn about Merge and interact with existing documentation. From my research, I summarized a few key
+				takeaways and mapped common user journeys.</p>
+			<p id="216a3508-bfcd-8089-8aac-c894cff58ed3" class="">🖼️ [fullstory chart]</p>
+			<p id="216a3508-bfcd-80ea-8451-d148530eba6a" class=""><em>Caption:</em> Fullstory diagram shows what pages
+				people frequently navigate to from the Docs homepage.</p>
+			<h3 id="216a3508-bfcd-8037-89f2-ccb139c22ac5" class="">Key Takeaways</h3>
+			<ol type="1" id="216a3508-bfcd-80df-be33-c022a53e61ae" class="numbered-list" start="1">
+				<li><strong>API Reference</strong> is the first section most users visit (and the <em>only</em> section
+					for some)</li>
+			</ol>
+			<ol type="1" id="216a3508-bfcd-8054-a7de-f8e28bf7de75" class="numbered-list" start="2">
+				<li>Users rarely look at <strong>Use Cases</strong> even though it’s very useful for prospects or people
+					new to Merge</li>
+			</ol>
+			<ol type="1" id="216a3508-bfcd-80b2-8b85-c8bc954de59c" class="numbered-list" start="3">
+				<li>Users rarely look at <strong>Get Started</strong>, but an unofficial <strong>“Merge Starter Pack,”
+					</strong>which includes guides on authentication, syncing data, webhooks, and embedded Link, is
+					frequently sent to prospects and customers</li>
+			</ol>
+			<ol type="1" id="216a3508-bfcd-80c7-abff-c96efab710d5" class="numbered-list" start="4">
+				<li><strong>Guides</strong> content is incredibly useful, but hard to discover and navigate</li>
+			</ol>
+			<ol type="1" id="216a3508-bfcd-809b-a339-f7f7a159145c" class="numbered-list" start="5">
+				<li><strong>Supported Fields and Features</strong> tables are extremely useful but hard to find because
+					the <strong>Integrations</strong> tab name does not indicate that the tables would be inside</li>
+			</ol>
+			<ol type="1" id="216a3508-bfcd-8038-a39f-fb0093b7a049" class="numbered-list" start="6">
+				<li><strong>Third-party endpoints</strong> are not very useful for customer implementation, but are
+					important to prove Merge’s credibility to prospects</li>
+			</ol>
+			<hr id="21ba3508-bfcd-80ab-b1c3-fd48175486b2" />
+			<h2 id="21ba3508-bfcd-8069-8d67-f6ea16b7fdc8" class="">User Journeys &amp; Personas</h2>
+			<p id="21ba3508-bfcd-80a6-9c0e-d86152523b41" class="">Based on my research, I developed two key personas and
+				user journeys.</p>
+			<h3 id="21ba3508-bfcd-8041-882e-e47c7b9d2293" class="">Prospective User</h3>
+			<p id="21ba3508-bfcd-80b8-a5fc-cbb3985e5243" class="">This user is evaluating whether Merge is the right
+				solution for their team or product. They may be a product manager, founder, or solutions lead—not
+				necessarily deeply technical, but familiar with integration challenges. They want to understand Merge’s
+				value quickly and assess technical feasibility without getting lost in API details.</p>
+			<p id="215a3508-bfcd-804c-8e25-efd7e7b109fd" class=""><em>“Can Merge do what I need? How hard is it to
+					implement?”</em></p>
+			<p id="215a3508-bfcd-80c5-bd5d-ecf2bfed6ed3" class=""><strong>Key needs</strong>: </p>
+			<ul id="21ba3508-bfcd-80bd-8dba-ef065da5d7d8" class="bulleted-list">
+				<li style="list-style-type:disc">A clear, high-level explanation of what Merge does and how it works
+				</li>
+			</ul>
+			<ul id="21ba3508-bfcd-808c-9bf1-f991dedd51d2" class="bulleted-list">
+				<li style="list-style-type:disc">A clear breakdown of supported platforms and data fields (i.e.,
+					coverage)</li>
+			</ul>
+			<ul id="21ba3508-bfcd-80a0-8a24-f2237868bff3" class="bulleted-list">
+				<li style="list-style-type:disc">Content framed around “what can I do with this?” rather than just
+					technical detail</li>
+			</ul>
+			<ul id="21ba3508-bfcd-8084-9576-c6b89a74eabe" class="bulleted-list">
+				<li style="list-style-type:disc">Proof of Merge’s credibility, such as visible third-party endpoints or
+					case studies</li>
+			</ul>
+			<p id="21ba3508-bfcd-800e-9258-df01febebc45" class=""><strong>User Journey</strong></p>
+			<p id="216a3508-bfcd-8037-83ea-e32aac334ff1" class="">🖼️ [screenshot of prospect user journey flows]</p>
+			<p id="216a3508-bfcd-8004-b067-f3fdce4e33b1" class=""><em>Caption: </em>Questions that prospects will
+				typically ask during a demo with a Solutions Engineer, and the page in Merge Docs that answers each
+				question, respectively. The yellow/orange boxes are common follow-up questions that don’t currently have
+				any documentation to answer.</p>
+			<h3 id="216a3508-bfcd-8018-97a8-e1fbc4caf2e1" class="">Implementation Engineer</h3>
+			<p id="21ba3508-bfcd-8056-9fde-fc037f9517b9" class="">This user (or someone else on their team) has already
+				chosen Merge and is now responsible for setting up the integration. They may be a software engineer or
+				technical team member not necessarily involved in the prior evaluation process. They want clear guidance
+				on how to implement this new product and are focused on execution and fast delivery. </p>
+			<p id="215a3508-bfcd-801a-ad36-da647cad0e0c" class=""><em>“How do I authenticate and sync data?”</em></p>
+			<p id="215a3508-bfcd-807f-9288-f848adc087e1" class=""><strong>Key needs</strong>:</p>
+			<ul id="21ba3508-bfcd-807d-81c4-d16506fa0f35" class="bulleted-list">
+				<li style="list-style-type:disc">A single place to find everything they need to get started</li>
+			</ul>
+			<ul id="21ba3508-bfcd-8032-aa09-f3da52c93e3d" class="bulleted-list">
+				<li style="list-style-type:disc">Easy-to-scan reference pages and an intuitive structure that minimizes
+					clicking around</li>
+			</ul>
+			<ul id="21ba3508-bfcd-809c-8f8f-fff0e351410e" class="bulleted-list">
+				<li style="list-style-type:disc">Practical examples, code snippets, and diagrams they can follow or copy
+				</li>
+			</ul>
+			<ul id="21ba3508-bfcd-803d-a18c-fb9b9cafa008" class="bulleted-list">
+				<li style="list-style-type:disc">Troubleshooting resources for when things don’t work as expected</li>
+			</ul>
+			<p id="21ba3508-bfcd-801f-aa73-ee07ba3a0dda" class=""><strong>User Journey</strong></p>
+			<p id="216a3508-bfcd-8005-af47-e69f951064af" class="">🖼️ [screenshot of customer user journey flows]</p>
+			<p id="216a3508-bfcd-80ab-8c70-f6ba6f4b1439" class=""><em>Caption: </em>Existing Merge customers typically
+				start from Merge’s landing page or from a conversation with their Customer Success Manager, who then
+				sends the customer links to the articles they need.</p>
+			<hr id="215a3508-bfcd-80f1-b782-f9ad6e476386" />
+			<h2 id="215a3508-bfcd-8075-bbe0-cc703b52954b" class="">Solution</h2>
+			<p id="215a3508-bfcd-80ec-9e45-c9aa9459c750" class="">To address the fragmented experience, I proposed a new
+				information architecture shaped by user intent, not product structure. I began with a <strong>top-level
+					navigation redesign</strong>, separating all documentation into four main sections:</p>
+			<p id="21ba3508-bfcd-805d-95c7-f21701c07e2d" class="">🖼️ [image of information architecture from figjam]
+			</p>
+			<p id="21ba3508-bfcd-8007-be95-f73f09332038" class="">See full breakdown in Figjam</p>
+			<h3 id="215a3508-bfcd-8010-9faf-e4f5b649c4ee" class=""><strong>1. Introduction</strong></h3>
+			<p id="21ba3508-bfcd-802e-8ed2-ebad1fe0ca5c" class="">A storytelling-focused introduction to Merge for
+				newcomers and prospects</p>
+			<ul id="21ba3508-bfcd-800b-a184-e7c8df75f894" class="bulleted-list">
+				<li style="list-style-type:disc">Answers initial question of “<em>Can Merge do what I need?</em>”</li>
+			</ul>
+			<ul id="21ba3508-bfcd-80a4-8785-d96c49e73335" class="bulleted-list">
+				<li style="list-style-type:disc">Moved <strong><a href="https://docs.merge.dev/use-cases/">Use
+							Cases</a></strong> in here for better discoverability</li>
+			</ul>
+			<h3 id="21ba3508-bfcd-8011-b9b3-e6a793a13d70" class="">2. Implementation</h3>
+			<p id="21ba3508-bfcd-8079-bb86-cfd414b27598" class="">A reorganized section explaining core features and
+				concepts for active customers</p>
+			<ul id="21ba3508-bfcd-809e-ae47-c9b4dacae212" class="bulleted-list">
+				<li style="list-style-type:disc">Renamed from <strong>Guides</strong> to <strong>Implementation</strong>
+					to be more user-centric and improve discoverability</li>
+			</ul>
+			<ul id="21ba3508-bfcd-80bd-9319-e4ded15c1733" class="bulleted-list">
+				<li style="list-style-type:disc">Combined existing <a
+						href="https://docs.merge.dev/get-started/introduction/">Get Started</a> content and <a
+						href="https://docs.merge.dev/basics/authentication/">Authentication</a>, <a
+						href="https://docs.merge.dev/basics/syncing-data/">Syncing data</a>, <a
+						href="https://docs.merge.dev/basics/webhooks/overview/">Webhooks</a>, and <a
+						href="https://docs.merge.dev/get-started/link/">embedded Link</a> content into a new
+					<strong>Quick Start</strong> subsection at the beginning, </li>
+			</ul>
+			<ul id="21ba3508-bfcd-80a8-82de-f2ae3c2187bd" class="bulleted-list">
+				<li style="list-style-type:disc">Improved organization and made left nav always visible for easy
+					navigation</li>
+			</ul>
+			<p id="21ba3508-bfcd-809b-82dd-cb2cbb8072ac" class="">🖼️ [image of new navigation]</p>
+			<ul id="21ba3508-bfcd-806c-a4d0-c5c4601bb7e8" class="bulleted-list">
+				<li style="list-style-type:disc">Redesigned overall page layout of implementation docs to be more user
+					friendly with table of contents, video, and related topics</li>
+			</ul>
+			<p id="21ba3508-bfcd-80ae-b412-e63c4b2ade66" class="">🖼️ [image of new page layout]</p>
+			<h3 id="21ba3508-bfcd-80c6-96ce-ed3046064706" class="">3. API Reference</h3>
+			<p id="21ba3508-bfcd-80e9-a94a-c6658b83a388" class="">The most visited section, prioritized in structure</p>
+			<ul id="21ba3508-bfcd-808b-94c5-cb41d5c1c899" class="bulleted-list">
+				<li style="list-style-type:disc">Contains all the most frequently accessed information - category
+					overviews, Common Models and endpoints, and supported fields</li>
+			</ul>
+			<ul id="21ba3508-bfcd-8085-ba8c-d6f30c3dc735" class="bulleted-list">
+				<li style="list-style-type:disc">Moved <strong><a
+							href="https://docs.merge.dev/integrations/hris/overview/">Integrations</a></strong> and
+					<strong><a href="https://docs.merge.dev/integrations/hris/supported-fields/">Supported
+							Fields</a></strong><strong>/</strong><strong><a
+							href="https://docs.merge.dev/integrations/hris/supported-features/">Features</a></strong> in
+					here and renamed to <strong>Coverage</strong> for better discoverability</li>
+			</ul>
+			<ul id="21ba3508-bfcd-80c8-9b4b-d87c3b213f4c" class="bulleted-list">
+				<li style="list-style-type:disc">Combined Supported Fields and Supported Features into one dynamic table
+				</li>
+			</ul>
+			<p id="21ba3508-bfcd-80c7-991a-db79707f04ee" class="">🖼️ [image of new table]</p>
+			<ul id="21ba3508-bfcd-8039-98bf-fb90537e2914" class="bulleted-list">
+				<li style="list-style-type:disc">Moved less important third-party endpoints into a drawer in All
+					integrations</li>
+			</ul>
+			<p id="21ba3508-bfcd-8060-9cbe-c77fa5f6ade0" class="">🖼️ [image of drawer]</p>
+			<h3 id="21ba3508-bfcd-807c-af2d-c90c5c327c5c" class="">4. Resources</h3>
+			<p id="21ba3508-bfcd-808b-943d-f3df82a5eeb0" class="">Quick links to Help Center, Changelog, Trust Center,
+				etc.</p>
+			<ul id="21ca3508-bfcd-802d-820e-f5ad0e60d744" class="bulleted-list">
+				<li style="list-style-type:disc">This mostly stays the same with the addition of Trust Center links to
+					add credibility for prospects</li>
+			</ul>
+			<hr id="215a3508-bfcd-80b6-a027-fe89035c7860" />
+			<h2 id="215a3508-bfcd-80ec-a140-ef964d643209" class="">Final Design</h2>
+			<p id="21da3508-bfcd-800f-8213-d2f66a94ce07" class="">Due to limited engineering bandwidth and competing
+				customer priorities, we ultimately decided not to move forward with implementation on this project. Most
+				of my work remained at the low-fidelity stage in Figjam. I focused on <strong>wireframes</strong> and
+				<strong>structural mockups</strong> to communicate the new information architecture and shared my design
+				iterations cross-functionally to incorporate feedback from Product, Sales, and Engineering.</p>
+			<p id="21da3508-bfcd-8093-8a54-dda5031dc67c" class="">🖼️ [figjam mockups embed]</p>
+			<p id="21da3508-bfcd-808e-b11f-f773e784f08d" class="">However, I did create a <strong>high-fidelity
+					prototype </strong>of the<strong> Field Mapping doc</strong> to explore and validate the redesigned
+				page layout within the proposed “Implementation” section. This prototype showcased two major
+				improvements:</p>
+			<ul id="21da3508-bfcd-80a0-9871-e54a7a5d6fd4" class="bulleted-list">
+				<li style="list-style-type:disc">A <strong>persistent left navigation</strong> to improve wayfinding and
+					reduce friction while navigating dense content</li>
+			</ul>
+			<ul id="21da3508-bfcd-808f-aa96-e80ff70af1a1" class="bulleted-list">
+				<li style="list-style-type:disc">A <strong>scrolling, single-page layout</strong> to support deep
+					reading and minimize context-switching</li>
+			</ul>
+			<p id="21da3508-bfcd-80d3-b007-e8ea6494974d" class="">🖼️ [figma prototype embed of field mapping docs page]
+			</p>
+			<h3 id="21ba3508-bfcd-8028-88dc-e2c958712556" class="">Implementation Plan</h3>
+			<p id="21da3508-bfcd-80ad-97c5-d3655305841a" class="">In addition to the wireframes and prototype, I
+				outlined a phased implementation plan to help the team prioritize work based on impact and effort. The
+				plan was divided into <strong>five milestones </strong>ordered from least to greatest engineering lift,
+				focusing on updating the most critical pages first. Each milestone was designed to deliver value
+				incrementally to improving the user experience over time without requiring a full overhaul all at once.
+			</p>
+			<p id="21da3508-bfcd-8037-a6da-f3692f9ca215" class="">See detailed breakdown of each milestone →</p>
+			<hr id="215a3508-bfcd-8085-8bd9-d49dca350646" />
+			<h2 id="215a3508-bfcd-80ea-9914-e4aefce9429b" class="">Insights</h2>
+			<p id="215a3508-bfcd-8023-9835-dc93a0e65fa5" class="">Although the redesign was paused before launch, the
+				project revealed how much opportunity there is to improve the documentation experience by reframing it
+				around real user journeys. </p>
+			<h3 id="21da3508-bfcd-80f7-aec6-ebb8721323b8" class="">Key takeaways:</h3>
+			<ul id="21da3508-bfcd-80fd-8e0c-de7cae14d02b" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Content discoverability matters just as much as content
+						quality. </strong>Users weren’t missing information because it didn’t exist, but because they
+					didn’t know where to look.</li>
+			</ul>
+			<ul id="21da3508-bfcd-8087-8b04-e3fc5ac1fe97" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Naming and structure strongly influence engagement.</strong>
+					Renaming “Guides” to “Implementation” and grouping starter content into a “Quick Start” section
+					helped better match users’ mental models.</li>
+			</ul>
+			<ul id="21da3508-bfcd-8080-8535-eb97b9df42ba" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Docs are part of the product experience. </strong>Especially
+					for technical products like Merge, the documentation is often the first touchpoint for prospects and
+					the primary tool for customers post-sale. Developer docs are not just technical references, they are
+					part of the product’s onboarding experience.</li>
+			</ul>
+			<h3 id="21da3508-bfcd-80c0-a1de-ecbf1c1badf2" class="">Next Steps</h3>
+			<p id="21da3508-bfcd-80aa-835a-c61e09f0dcf5" class="">If this project were to move into development, the
+				next steps I would take are:</p>
+			<ul id="21da3508-bfcd-8075-9e56-e59f085d325d" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Prototype and usability test</strong> the new layout with real
+					prospects</li>
+			</ul>
+			<ul id="21da3508-bfcd-803c-a2d0-e49f6fb6adc2" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Collaborate with engineering</strong> to implement the five
+					milestones I previously outlined</li>
+			</ul>
+			<ul id="21da3508-bfcd-8084-a269-fc2ade54d2e2" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Quantify impact</strong> by tracking usage patterns in
+					FullStory and support tickets before and after rollout</li>
+			</ul>
+			<ul id="21da3508-bfcd-80b9-8459-e0e56483f81d" class="bulleted-list">
+				<li style="list-style-type:disc"><strong>Establish a scalable internal system</strong> for maintaining
+					and updating documentation</li>
+			</ul>
+			<hr id="21da3508-bfcd-80c5-a9a0-cfcb014872d4" />
+			<p id="21da3508-bfcd-80ec-8cc5-ee1334c82bfc" class="">Summary</p>
+			<p id="215a3508-bfcd-8041-afb2-d4f16d733aa0" class="">This project reinforced that developer docs are not
+				just technical references—they’re part of your product’s onboarding experience. If I had more time or
+				buy-in, I would’ve loved to:</p>
+			<ul id="215a3508-bfcd-803c-a683-df47581a3d0d" class="bulleted-list">
+				<li style="list-style-type:disc">Prototype and usability test the new layout with real prospects</li>
+			</ul>
+			<ul id="215a3508-bfcd-8001-a25c-da52410cbc2e" class="bulleted-list">
+				<li style="list-style-type:disc">Quantify impact by tracking support ticket volume before and after
+					rollout</li>
+			</ul>
+			<ul id="215a3508-bfcd-8086-b35f-f180f3d9622e" class="bulleted-list">
+				<li style="list-style-type:disc">Invest in richer, interactive examples to support embedded concepts
+					like syncing and auth</li>
+			</ul>
+			<p id="215a3508-bfcd-8092-a82b-ffbe9b2eee40" class="">Even though the work wasn’t implemented, it shaped how
+				we thought about self-serve design and informed future updates to other support content.</p>
+			<hr id="21da3508-bfcd-807b-9c88-d1c11d0b5933" />
+			<h2 id="21da3508-bfcd-80d5-bcff-f3b5ab7ceb1f" class="">🧠 Summary</h2>
+			<p id="21da3508-bfcd-808f-a361-c1ea741bf1da" class="">This case study highlights how thoughtful information
+				architecture and narrative design can transform documentation into a self-serve product experience.
+				While the redesign wasn’t implemented due to resource constraints, the work gave me the opportunity to
+				drive a cross-functional initiative, lead with research, and sharpen my ability to design for both
+				technical and non-technical users.</p>
+			<p id="21da3508-bfcd-8057-8812-e5f9c6f6c43b" class="">If I had more time and support, I would have loved to
+				take this project into usability testing and implementation — but even as a design-led initiative, it
+				shaped how we think about documentation as part of the product, not just a support layer.</p>
+			<p id="216a3508-bfcd-800a-b09e-f67f643d5a16" class="">
+			</p>
+			<p id="216a3508-bfcd-8010-89e4-f9c2d3edb5a3" class="">I wrote a product spec broken up into 5 milestones,
+				that was added to the roadmap for the next quarter, but was later deprioritized to focus on critical
+				customer requests and AI efforts. </p>
+			<p id="216a3508-bfcd-80cc-bacc-d6576d1a9d3a" class="">
+			</p>
+			<ul id="216a3508-bfcd-802d-9ecd-c521444366bd" class="bulleted-list">
+				<li style="list-style-type:disc">Prospects often needed Solutions Engineering demos just to understand
+					basic concepts.</li>
+			</ul>
+			<ul id="216a3508-bfcd-8012-bacd-e6ee439b4625" class="bulleted-list">
+				<li style="list-style-type:disc">Customers regularly asked post-sales team members to send them direct
+					links to relevant guides.</li>
+			</ul>
+			<ul id="216a3508-bfcd-80a4-b1a4-e7792611f7f0" class="bulleted-list">
+				<li style="list-style-type:disc">Useful content (like supported fields, auth, syncing) existed—but was
+					hidden under unclear labels or multiple clicks.</li>
+			</ul>
+			<p id="21ba3508-bfcd-80c5-9d70-d6df800fe083" class="">
+			</p>
+			<ol type="1" id="216a3508-bfcd-8019-bd7e-fea3e0089160" class="numbered-list" start="3">
+				<li><strong>Customer Success / Post-Sales</strong>
+					<p id="216a3508-bfcd-8057-a048-dfd57cfc57f4" class=""><em>“Where can I find the right link to
+							share?”</em></p>
+					<p id="216a3508-bfcd-8022-9f39-f7278140eaa8" class="">Needs: Centralized resources and easier
+						content discovery.</p>
+				</li>
+			</ol>
+			<p id="21ba3508-bfcd-80d7-9118-f74786e7df3a" class="">
+			</p>
+			<p id="21ba3508-bfcd-8007-b8f7-f1f6565089fa" class="">
+			</p>
+		</div>
+	</article><span class="sans" style="font-size:14px;padding-top:2em"></span>
+</body>
+
+</html>

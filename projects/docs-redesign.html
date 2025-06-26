@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Docs Redesign - Hayley Ye</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" href="../assets/favicon.png" type="image/png">
+</head>
+
+<body>
+    <main class="container">
+        <br>
+        <div class="section">
+            <a href="../index.html"><- Home</a>
+        </div>
+
+        <div class="section">
+            <h1>Docs Redesign</h1>
+            <h4><a href="https://merge.dev" target="_blank" class="inline">Merge</a>, 2024</h4>
+            <p>Transforming a dense knowledge base into an accessible, self-serve documentation experience.</p>
+            <img src="../assets/merge-docs/hero.png" width="100%">
+        </div>
+
+        <div class="section">
+            <h2>Project Overview &amp; Introduction</h2>
+            <p>As Merge’s API and
+                feature set grew, so did the complexity of
+                its developer documentation. While the content was valuable, users—both customers and
+                prospects—found it hard to navigate without guidance.
+            </p>
+            <p>I reimagined the information architecture and
+                narrative structure of <a href="https://docs.merge.dev/" target="_blank" class="inline">Merge Docs</a>
+                to <strong>support self-service, reduce post-sales burden, and better
+                    align with how users actually learn about Merge</strong>. Making Merge Docs a more intuitive,
+                self-serviced product would not only provide a better user experience, but also drive more
+                <strong>top-of-funnel conversion</strong> and <strong>reduce costs to scale</strong>.
+            </p>
+            <p>Although the redesign was not ultimately implemented,
+                this work provided great insights into how we could use storytelling, structure, and navigation to
+                support different user journeys.</p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>The Challenge</h2>
+            <p>Merge’s documentation is dense and technically rich
+                but not intuitive to navigate. From my user research, I learned that customers and prospects rely
+                heavily on support from the Merge team to learn more about the product.</p>
+            <p>The goal was to make Merge Docs a truly
+                <strong>self-serve product</strong> and design a documentation experience that supports two distinct
+                user journeys:
+            </p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Prospects</strong> looking to understand what Merge does and
+                    whether it fits their needs.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Customers</strong> looking for implementation details and
+                    troubleshooting help.</li>
+            </ul>
+            <h3>My Role</h3>
+            <p>
+                I initiated this project after noticing recurring friction in how users navigated Merge's documentation.
+                As
+                the <strong>sole designer</strong>, I led ideation, user research synthesis, and the proposed redesign.
+                While primarily a solo effort, I also collaborated with a product manager to write my first product spec
+                and
+                partnered with solutions engineers to learn about common pain points and validate user journeys. This
+                self-driven
+                project gave me the opportunity to exercise my product thinking and storytelling skills.
+            </p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>Research</h2>
+            <p>I analyzed data from Fullstory and conducted
+                interviews with Merge’s solutions engineers and post-sales to gain insight into how users currently
+                learn about Merge and interact with existing documentation. From my research, I summarized a few key
+                takeaways and mapped common user journeys.</p>
+            <img src="../assets/merge-docs/fullstory.png" width="100%">
+            <p>Fullstory diagram shows what pages people frequently navigate to from the Docs homepage.</p>
+            <h3>Key Takeaways</h3>
+            <ol type="1" class="numbered-list" start="1">
+                <li><a href="https://docs.merge.dev/hris/overview/" target="_blank" class="inline"><strong>API
+                            Reference</strong></a>
+                    is the first section most users visit (and the <em>only</em> section
+                    for some)</li>
+            </ol>
+            <ol type="1" class="numbered-list" start="2">
+                <li>Users rarely look at <a href="https://docs.merge.dev/use-cases/" target="_blank"
+                        class="inline"><strong>Use Cases</strong></a> even though it’s very useful for prospects or
+                    people
+                    new to Merge</li>
+            </ol>
+            <ol type="1" class="numbered-list" start="3">
+                <li>Users rarely look at <a href="https://docs.merge.dev/get-started/introduction/" target="_blank"
+                        class="inline"><strong>Get Started</strong></a>, but an unofficial <strong>“Merge Starter Pack,”
+                    </strong>which includes guides on
+                    <a href="https://docs.merge.dev/basics/authentication/" target="_blank"
+                        class="inline">authentication</a>,
+                    <a href="https://docs.merge.dev/basics/syncing-data/" target="_blank" class="inline">syncing
+                        data</a>,
+                    <a href="https://docs.merge.dev/basics/webhooks/overview/" target="_blank"
+                        class="inline">webhooks</a>, and
+                    <a href="https://docs.merge.dev/get-started/link/" target="_blank" class="inline">embedded Link</a>,
+                    is
+                    frequently sent to prospects and customers
+                </li>
+            </ol>
+            <ol type="1" class="numbered-list" start="4">
+                <li><a href="https://docs.merge.dev/guides/" target="_blank" class="inline"><strong>Guides</strong></a>
+                    content is incredibly useful, but hard to discover and navigate</li>
+            </ol>
+            <ol type="1" class="numbered-list" start="5">
+                <li><a href="https://docs.merge.dev/integrations/hris/supported-fields/" target="_blank"
+                        class="inline"><strong>Supported Fields</strong></a> and <a
+                        href="https://docs.merge.dev/integrations/hris/supported-features/" target="_blank"
+                        class="inline"><strong>Features</strong></a> tables are extremely useful but hard to find
+                    because the <strong>Integrations</strong> tab name does not indicate that the tables would be inside
+                </li>
+            </ol>
+            <ol type="1" class="numbered-list" start="6">
+                <li><a href="https://docs.merge.dev/integrations/hris/7shifts/provider-interactions/" target="_blank"
+                        class="inline"><strong>Third-party endpoints</strong></a> are not very useful for customer
+                    implementation, but are
+                    important to prove Merge’s credibility to prospects</li>
+            </ol>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>User Journeys &amp; Personas</h2>
+            <p>Based on my research, I developed two key personas and
+                user journeys.</p>
+            <h3>Prospective User</h3>
+            <p>This user is evaluating whether Merge is the right
+                solution for their team or product. They may be a product manager, founder, or solutions lead—not
+                necessarily deeply technical, but familiar with integration challenges. They want to understand Merge’s
+                value quickly and assess technical feasibility without getting lost in API details.</p>
+            <p><em>“Can Merge do what I need? How hard is it to
+                    implement?”</em></p>
+            <p><strong>Key needs</strong>: </p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">A clear, high-level explanation of what Merge does and how it works
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">A clear breakdown of supported platforms and data fields (i.e.,
+                    coverage)</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Content framed around “what can I do with this?” rather than just
+                    technical detail</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Proof of Merge’s credibility, such as visible third-party endpoints or
+                    case studies</li>
+            </ul>
+            <img src="../assets/merge-docs/prospect-user-journey.png" width="100%">
+            <p>Questions that prospects will typically ask during a demo with a Solutions Engineer, and the page in
+                Merge Docs that answers each
+                question, respectively. The yellow/orange boxes are common follow-up questions that don’t currently have
+                any documentation to answer.</p>
+            <h3>Implementation Engineer</h3>
+            <p>This user (or someone else on their team) has already
+                chosen Merge and is now responsible for setting up the integration. They may be a software engineer or
+                technical team member not necessarily involved in the prior evaluation process. They want clear guidance
+                on how to implement this new product and are focused on execution and fast delivery. </p>
+            <p><em>“How do I authenticate and sync data?”</em></p>
+            <p><strong>Key needs</strong>:</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">A single place to find everything they need to get started</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Easy-to-scan reference pages and an intuitive structure that minimizes
+                    clicking around</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Practical examples, code snippets, and diagrams they can follow or copy
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Troubleshooting resources for when things don’t work as expected</li>
+            </ul>
+            <img src="../assets/merge-docs/customer-user-journey.png" width="100%">
+            <p>Existing Merge customers typically
+                start from Merge’s landing page or from a conversation with their Customer Success Manager, who then
+                sends the customer links to the articles they need.</p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>Solution</h2>
+            <p>To address the fragmented experience, I proposed a new
+                information architecture shaped by user intent, not product structure. I began with a <strong>top-level
+                    navigation redesign</strong>, separating all documentation into four main sections:</p>
+            <img src="../assets/merge-docs/information-architecture.png" width="100%">
+            <p><a href="https://www.figma.com/board/VN5lObYqwDifjZvHJnhObX/Case-Study---Docs-Redesign?node-id=0-1&p=f&t=MnoUg3Q5O4haFuIx-11"
+                    target="_blank">See full breakdown in Figjam -></a></p>
+            <h3><strong>1. Introduction</strong></h3>
+            <p>A storytelling-focused introduction to Merge for
+                newcomers and prospects</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Answers initial question of “<em>Can Merge do what I need?</em>”</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Moved <strong><a href="https://docs.merge.dev/use-cases/"
+                            target="_blank" class="inline">Use Cases</a></strong> in here for better discoverability
+                </li>
+            </ul>
+            <h3>2. Implementation</h3>
+            <p>A reorganized section explaining core features and
+                concepts for active customers</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Renamed from <strong>Guides</strong> to <strong>Implementation</strong>
+                    to be more user-centric and improve discoverability</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Combined existing <a
+                        href="https://docs.merge.dev/get-started/introduction/" target="_blank" class="inline">Get
+                        Started</a> content and <a href="https://docs.merge.dev/basics/authentication/" target="_blank"
+                        class="inline">Authentication</a>, <a href="https://docs.merge.dev/basics/syncing-data/"
+                        target="_blank" class="inline">Syncing
+                        data</a>, <a href="https://docs.merge.dev/basics/webhooks/overview/" target="_blank"
+                        class="inline">Webhooks</a>, and <a href="https://docs.merge.dev/get-started/link/"
+                        target="_blank" class="inline">embedded Link</a> content into a new
+                    <strong>Quick Start</strong> subsection at the beginning,
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Improved organization and made left nav always visible for easy
+                    navigation</li>
+            </ul>
+            <p>🖼️ [image of new navigation]</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Redesigned overall page layout of implementation docs to be more user
+                    friendly with table of contents, video, and related topics</li>
+            </ul>
+            <p>🖼️ [image of new page layout]</p>
+            <h3>3. API Reference</h3>
+            <p>The most visited section, prioritized in structure</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Contains all the most frequently accessed information - category
+                    overviews, Common Models and endpoints, and supported fields</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Moved <strong><a
+                            href="https://docs.merge.dev/integrations/hris/overview/" target="_blank"
+                            class="inline">Integrations</a></strong> and
+                    <strong><a href="https://docs.merge.dev/integrations/hris/supported-fields/" target="_blank"
+                            class="inline">Supported
+                            Fields</a></strong><strong>/</strong><strong><a
+                            href="https://docs.merge.dev/integrations/hris/supported-features/" target="_blank"
+                            class="inline">Features</a></strong> in
+                    here and renamed to <strong>Coverage</strong> for better discoverability
+                </li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Combined Supported Fields and Supported Features into one dynamic table
+                </li>
+            </ul>
+            <p>🖼️ [image of new table]</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">Moved less important third-party endpoints into a drawer in All
+                    integrations</li>
+            </ul>
+            <p>🖼️ [image of drawer]</p>
+            <h3>4. Resources</h3>
+            <p>Quick links to Help Center, Changelog, Trust Center,
+                etc.</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">This mostly stays the same with the addition of Trust Center links to
+                    add credibility for prospects</li>
+            </ul>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>Final Design</h2>
+            <p>Due to limited engineering bandwidth and competing
+                customer priorities, we ultimately decided not to move forward with implementation on this project. Most
+                of my work remained at the low-fidelity stage in Figjam. I focused on <strong>wireframes</strong> and
+                <strong>structural mockups</strong> to communicate the new information architecture and shared my design
+                iterations cross-functionally to incorporate feedback from Product, Sales, and Engineering.
+            </p>
+            <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
+                src="https://embed.figma.com/board/VN5lObYqwDifjZvHJnhObX/Case-Study---Docs-Redesign?node-id=6-581&embed-host=share"
+                allowfullscreen></iframe>
+            <p>However, I did create a <strong>high-fidelity
+                    prototype </strong>of the<strong> Field Mapping doc</strong> to explore and validate the redesigned
+                page layout within the proposed “Implementation” section. This prototype showcased two major
+                improvements:</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">A <strong>persistent left navigation</strong> to improve wayfinding and
+                    reduce friction while navigating dense content</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc">A <strong>scrolling, single-page layout</strong> to support deep
+                    reading and minimize context-switching</li>
+            </ul>
+            <p>🖼️ [figma prototype embed of field mapping docs page]
+            </p>
+            <h3>Implementation Plan</h3>
+            <p>In addition to the wireframes and prototype, I
+                outlined a phased implementation plan to help the team prioritize work based on impact and effort. The
+                plan was divided into <strong>five milestones </strong>ordered from least to greatest engineering lift,
+                focusing on updating the most critical pages first. Each milestone was designed to deliver value
+                incrementally to improving the user experience over time without requiring a full overhaul all at once.
+            </p>
+            <p><a href="https://www.figma.com/board/VN5lObYqwDifjZvHJnhObX/Case-Study---Docs-Redesign?node-id=13-2113&p=f&t=MnoUg3Q5O4haFuIx-11"
+                    target="_blank">See detailed breakdown of each milestone -></a></p>
+        </div>
+        <hr />
+        <div class="section">
+            <h2>Insights</h2>
+            <p>Although the redesign was paused before launch, the
+                project revealed how much opportunity there is to improve the documentation experience by reframing it
+                around real user journeys. </p>
+            <h3>What we learned:</h3>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Content discoverability matters just as much as content
+                        quality. </strong>Users weren’t missing information because it didn’t exist, but because they
+                    didn’t know where to look.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Naming and structure strongly influence engagement.</strong>
+                    Renaming “Guides” to “Implementation” and grouping starter content into a “Quick Start” section
+                    helped better match users’ mental models.</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Docs are part of the product experience. </strong>Especially
+                    for technical products like Merge, the documentation is often the first touchpoint for prospects and
+                    the primary tool for customers post-sale. Developer docs are not just technical references, they are
+                    part of the product’s onboarding experience.</li>
+            </ul>
+            <h3>Next Steps:</h3>
+            <p>If this project were to move into development, the
+                next steps I would take are:</p>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Prototype and usability test</strong> the new layout with real
+                    prospects</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Collaborate with engineering</strong> to implement the five
+                    milestones I previously outlined</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Quantify impact</strong> by tracking usage patterns in
+                    FullStory and support tickets before and after rollout</li>
+            </ul>
+            <ul class="bulleted-list">
+                <li style="list-style-type:disc"><strong>Establish a scalable internal system</strong> for maintaining
+                    and updating documentation</li>
+            </ul>
+        </div>
+        <hr />
+
+
+        <nav>
+            <a class="nav" href="https://drive.google.com/file/d/1Db4muiipyI5Rl645pSvjpg58gsTP486j/view?usp=sharing"
+                target="_blank">Resume</a>
+            <a class="nav" href="https://www.linkedin.com/in/hayley-ye/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/hayleymye/hayleyye.com" target="_blank">GitHub</a>
+            <a class="nav" href="mailto:hayleymye@gmail.com">Email</a>
+        </nav>
+
+    </main>
+</body>
+
+</html>
