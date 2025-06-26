@@ -145,3 +145,86 @@ hr.row {
   height: 100%;
   display: block;
 } */
+
+/* Modal styles */
+.modal-open {
+    overflow: hidden;
+}
+
+#imageModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2147483647;
+    isolation: isolate;
+}
+
+#imageModal .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.9);
+}
+
+#imageModal .close-button {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 2147483647;
+}
+
+#imageModal .content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 95%;
+    height: 95%;
+    z-index: 2147483647;
+}
+
+#imageModal img {
+    max-width: 100%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+#imageModal p {
+    color: white;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+/* Image grid styles */
+@media (min-width: 768px) {
+    .image-grid {
+        display: flex;
+        gap: 12px;
+    }
+    .image-item {
+        flex: 1;
+    }
+}
+
+@media (max-width: 767px) {
+    .image-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .image-item {
+        width: 100%;
+    }
+    .image-item img {
+        width: 100% !important;
+    }
+}
