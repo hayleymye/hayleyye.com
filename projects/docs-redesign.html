@@ -45,6 +45,7 @@
                 support different user journeys.</p>
         </div>
         <hr />
+
         <div class="section">
             <h2>The Challenge</h2>
             <p>Merge’s documentation is dense and technically rich
@@ -75,6 +76,7 @@
             </p>
         </div>
         <hr />
+
         <div class="section">
             <h2>Research</h2>
             <p>I analyzed data from Fullstory and conducted
@@ -82,11 +84,22 @@
                 learn about Merge and interact with existing documentation. From my research, I summarized a few key
                 takeaways and mapped common user journeys.</p>
             <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
-                onclick="openModal('../assets/merge-docs/fullstory.png', 'Fullstory diagram')">
+                onclick="openModal('../assets/merge-docs/fullstory.png', 'Fullstory diagram shows what pages people frequently navigate to from the Docs homepage')">
                 <img src="../assets/merge-docs/fullstory.png" alt="Fullstory diagram"
                     style="width: 100%; object-fit: contain;">
                 <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Fullstory diagram shows what pages people
                     frequently navigate to from the Docs homepage.</p>
+            </div>
+            <div id="imageModal"
+                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; overflow: hidden;">
+                <span
+                    style="position: fixed; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; z-index: 1000000;"
+                    onclick="closeModal()">&times;</span>
+                <div
+                    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 95%; height: 95%; z-index: 1000000;">
+                    <img id="modalImage" style="max-width: 100%; max-height: 90%; object-fit: contain;">
+                    <p id="modalCaption" style="color: white; margin-top: 20px; font-size: 1rem;"></p>
+                </div>
             </div>
             <h3>Key Takeaways</h3>
             <ol type="1" class="numbered-list" start="1">
@@ -136,6 +149,7 @@
             </ol>
         </div>
         <hr />
+
         <div class="section">
             <h2>User Journeys &amp; Personas</h2>
             <p>Based on my research, I developed two key personas and
@@ -147,11 +161,15 @@
                 value quickly and assess technical feasibility without getting lost in API details.</p>
             <p><em>“Can Merge do what I need? How hard is it to
                     implement?”</em></p>
-            <img src="../assets/merge-docs/prospect-user-journey.png" width="100%">
-            <p>Questions that prospects will typically ask during a demo with a Solutions Engineer, and the page in
-                Merge Docs that answers each
-                question, respectively. The yellow/orange boxes are common follow-up questions that don’t currently have
-                any documentation to answer.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/merge-docs/prospect-user-journey.png', 'Questions that prospects will typically ask during a demo with a Solutions Engineer, and the page in Merge Docs that answers each question, respectively. The yellow/orange boxes are common follow-up questions that don’t currently have any documentation to answer.')">
+                <img src="../assets/merge-docs/prospect-user-journey.png" alt="Prospect user journey"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Questions that prospects will typically
+                    ask during a demo with a Solutions Engineer, and the page in Merge Docs that answers each question,
+                    respectively. The yellow/orange boxes are common follow-up questions that don’t currently have any
+                    documentation to answer.</p>
+            </div>
             <p><strong>Key needs</strong>: </p>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">A clear, high-level explanation of what Merge does and how it works
@@ -175,10 +193,14 @@
                 technical team member not necessarily involved in the prior evaluation process. They want clear guidance
                 on how to implement this new product and are focused on execution and fast delivery. </p>
             <p><em>“How do I authenticate and sync data?”</em></p>
-            <img src="../assets/merge-docs/customer-user-journey.png" width="100%">
-            <p>Existing Merge customers typically
-                start from Merge’s landing page or from a conversation with their Customer Success Manager, who then
-                sends the customer links to the articles they need.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/merge-docs/customer-user-journey.png', 'Existing Merge customers typically start from Merge’s landing page or from a conversation with their Customer Success Manager, who then sends the customer links to the articles they need.')">
+                <img src="../assets/merge-docs/customer-user-journey.png" alt="Customer user journey"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Existing Merge customers typically start
+                    from Merge’s landing page or from a conversation with their Customer Success Manager, who then sends
+                    the customer links to the articles they need.</p>
+            </div>
             <p><strong>Key needs</strong>:</p>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">A single place to find everything they need to get started</li>
@@ -196,14 +218,22 @@
             </ul>
         </div>
         <hr />
+
         <div class="section">
             <h2>Solution</h2>
             <p>To address the fragmented experience, I proposed a new
                 information architecture shaped by user intent, not product structure. I began with a <strong>top-level
                     navigation redesign</strong>, separating all documentation into four main sections:</p>
-            <img src="../assets/merge-docs/information-architecture.png" width="100%">
-            <p><a href="https://www.figma.com/board/VN5lObYqwDifjZvHJnhObX/Case-Study---Docs-Redesign?node-id=0-1&p=f&t=MnoUg3Q5O4haFuIx-11"
-                    target="_blank">See full breakdown in Figjam -></a></p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/merge-docs/information-architecture.png', 'Proposed information architcture with four main sections')">
+                <img src="../assets/merge-docs/information-architecture.png" alt="Proposed information architecture"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Proposed information architcture with
+                    four main sections</p>
+            </div>
+            <p><a
+                        href="https://www.figma.com/board/VN5lObYqwDifjZvHJnhObX/Case-Study---Docs-Redesign?node-id=0-1&p=f&t=MnoUg3Q5O4haFuIx-11"
+                        target="_blank">See full breakdown in Figjam -></a></p>
             <h3><strong>1. Introduction</strong></h3>
             <p>A storytelling-focused introduction to Merge for
                 newcomers and prospects</p>
@@ -237,13 +267,13 @@
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Improved organization and made left nav always visible for easy
                     navigation</li>
+                <p>🖼️ [image of new navigation]</p>
             </ul>
-            <p>🖼️ [image of new navigation]</p>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Redesigned overall page layout of implementation docs to be more user
                     friendly with table of contents, video, and related topics</li>
+                <p>🖼️ [image of new page layout]</p>
             </ul>
-            <p>🖼️ [image of new page layout]</p>
             <h3>3. API Reference</h3>
             <p>The most visited section, prioritized in structure</p>
             <ul class="bulleted-list">
@@ -265,13 +295,13 @@
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Combined Supported Fields and Supported Features into one dynamic table
                 </li>
+                <p>🖼️ [image of new table]</p>
             </ul>
-            <p>🖼️ [image of new table]</p>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">Moved less important third-party endpoints into a drawer in All
                     integrations</li>
+                <p>🖼️ [image of drawer]</p>
             </ul>
-            <p>🖼️ [image of drawer]</p>
             <h3>4. Resources</h3>
             <p>Quick links to Help Center, Changelog, Trust Center,
                 etc.</p>
@@ -281,6 +311,7 @@
             </ul>
         </div>
         <hr />
+
         <div class="section">
             <h2>Final Design</h2>
             <p>Due to limited engineering bandwidth and competing
@@ -294,8 +325,9 @@
                 allowfullscreen></iframe>
             <p>However, I did create a <strong>high-fidelity
                     prototype </strong>of the<strong> Field Mapping doc</strong> to explore and validate the redesigned
-                page layout within the proposed “Implementation” section. This prototype showcased two major
-                improvements:</p>
+                page layout within the proposed “Implementation” section.</p>
+            <p>🖼️ [figma prototype embed of field mapping docs page]
+            <p>This prototype showcased two major improvements:</p>
             <ul class="bulleted-list">
                 <li style="list-style-type:disc">A <strong>persistent left navigation</strong> to improve wayfinding and
                     reduce friction while navigating dense content</li>
@@ -304,7 +336,7 @@
                 <li style="list-style-type:disc">A <strong>scrolling, single-page layout</strong> to support deep
                     reading and minimize context-switching</li>
             </ul>
-            <p>🖼️ [figma prototype embed of field mapping docs page]
+
             </p>
             <h3>Implementation Plan</h3>
             <p>In addition to the wireframes and prototype, I
@@ -317,6 +349,7 @@
                     target="_blank">See detailed breakdown of each milestone -></a></p>
         </div>
         <hr />
+
         <div class="section">
             <h2>Insights</h2>
             <p>Although the redesign was paused before launch, the
