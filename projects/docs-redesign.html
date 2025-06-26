@@ -9,6 +9,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="../style.css" />
     <link rel="icon" href="../assets/favicon.png" type="image/png">
+    <script src="../scripts/modal.js"></script>
 </head>
 
 <body>
@@ -80,8 +81,13 @@
                 interviews with Merge’s solutions engineers and post-sales to gain insight into how users currently
                 learn about Merge and interact with existing documentation. From my research, I summarized a few key
                 takeaways and mapped common user journeys.</p>
-            <img src="../assets/merge-docs/fullstory.png" width="100%">
-            <p>Fullstory diagram shows what pages people frequently navigate to from the Docs homepage.</p>
+            <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+                onclick="openModal('../assets/merge-docs/fullstory.png', 'Fullstory diagram')">
+                <img src="../assets/merge-docs/fullstory.png" alt="Fullstory diagram"
+                    style="width: 100%; object-fit: contain;">
+                <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Fullstory diagram shows what pages people
+                    frequently navigate to from the Docs homepage.</p>
+            </div>
             <h3>Key Takeaways</h3>
             <ol type="1" class="numbered-list" start="1">
                 <li><a href="https://docs.merge.dev/hris/overview/" target="_blank" class="inline"><strong>API
