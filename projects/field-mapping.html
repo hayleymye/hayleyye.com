@@ -120,18 +120,6 @@
                 </div>
             </div>
 
-            <div id="imageModal"
-                style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; overflow: hidden;">
-                <span
-                    style="position: fixed; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; z-index: 1000000;"
-                    onclick="closeModal()">&times;</span>
-                <div
-                    style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 95%; height: 95%; z-index: 1000000;">
-                    <img id="modalImage" style="max-width: 100%; max-height: 90%; object-fit: contain;">
-                    <p id="modalCaption" style="color: white; margin-top: 20px; font-size: 1rem;"></p>
-                </div>
-            </div>
-
             <h3 class="">Key Problems We Identified:</h3>
             <ol type="1" class="numbered-list" start="1">
                 <li>There were <strong>too many options on the initial screen</strong> in the dashboard, leading to
@@ -411,6 +399,20 @@
         </nav>
 
     </main>
+
+    <!-- Modal -->
+    <div id="imageModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; overflow: hidden;">
+        <span
+            style="position: fixed; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; z-index: 1000000;"
+            onclick="closeModal()">&times;</span>
+        <div
+            style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 95%; height: 95%; z-index: 1000000;">
+            <img id="modalImage" style="max-width: 100%; max-height: 90%; object-fit: contain;">
+            <p id="modalCaption" style="color: white; margin-top: 20px; font-size: 1rem;"></p>
+        </div>
+    </div>
+
 </body>
 
 </html>

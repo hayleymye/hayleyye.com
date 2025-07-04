@@ -147,6 +147,7 @@ hr.row {
 } */
 
 /* Modal styles */
+
 .modal-open {
     overflow: hidden;
 }
@@ -227,4 +228,30 @@ hr.row {
     .image-item img {
         width: 100% !important;
     }
+}
+
+/* table styles */
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+th {
+	background-color: #e8e8e8;
 }

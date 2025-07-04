@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Selective Sync</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1dda3508-bfcd-8002-80b0-f856729ce96f" class="page sans"><header><h1 class="page-title">Selective Sync</h1><p class="page-description"></p></header><div class="page-body"><p id="21fa3508-bfcd-80a7-b7c1-e1a5d9e0bafc" class="">Empowering enterprise customers with smarter, scalable data filtering to sync only what matters.</p><p id="21fa3508-bfcd-800b-8bde-c95dd87105e3" class="">🖼️ hero image</p><h2 id="1f2a3508-bfcd-8064-a482-c4e25662b9ae" class="">Project Overview &amp; Introduction</h2><p id="21fa3508-bfcd-8066-b14c-fea23b383785" class="">To support and sell to larger enterprise customers, Merge needed to be able to sync large amounts of customer data efficiently and securely. The existing syncing process often pulled all available records, much of it irrelevant, resulting in long sync times, higher costs, and unnecessary exposure of sensitive data. I led the end-to-end redesign to make <a href="https://help.merge.dev/articles/9113654-selective-sync">Merge’s Selective Sync</a> product a more discoverable, useful, and scalable way to filter data shared with Merge. </p><hr id="21fa3508-bfcd-80bc-8cd0-d7255cbadaab"/><h2 id="1f2a3508-bfcd-8066-a88a-cbe9933aacc3" class="">The Challenge</h2><p id="221a3508-bfcd-8024-866e-e1a2460029f7" class="">Merge faced three main issues when working with enterprise data:</p><ul id="21fa3508-bfcd-800c-84b1-e8b55714e8ee" class="bulleted-list"><li style="list-style-type:disc"><strong>Performance</strong>: Initial syncs for an account could take 12+ hours due to large data volumes, during which time the customer and end user has no visibility into what is happening</li></ul><ul id="21fa3508-bfcd-80b0-a78b-c41ab56359b1" class="bulleted-list"><li style="list-style-type:disc"><strong>Cost</strong>: Syncing unneeded data increased infrastructure and security costs for Merge</li></ul><ul id="21fa3508-bfcd-80d8-b1bc-c227a8c7d967" class="bulleted-list"><li style="list-style-type:disc"><strong>Privacy</strong>: Security-conscious customers needed granular control to exclude sensitive PII (Personally Identifiable Information)</li></ul><p id="221a3508-bfcd-80c4-b0aa-e385f9184d83" class="">Although Merge already offered a data filtering feature, adoption was low because the filters were too limited and the user experience was confusing. My challenge was to redesign Merge’s filtering experience to <strong>increase adoption</strong> and limit the data that Merge syncs to only <strong>recent, relevant data</strong>. </p><h3 id="221a3508-bfcd-801f-9ec0-e5bc15effbf9" class="">My Role</h3><p id="221a3508-bfcd-807c-8891-ca8e1fc3cfac" class=""><strong>I was the sole product designer on this project</strong>, responsible for leading the end-to-end design process from user research to prototyping and final handoff. I collaborated closely with a cross-functional team that included a product manager, post-sales, platform engineers, and software engineers. </p><hr id="21fa3508-bfcd-8073-8686-ff49d0e36db3"/><h2 id="222a3508-bfcd-80e9-8a9f-cc19248895ec" class="">User Personas</h2><p id="223a3508-bfcd-8049-bd0e-e59ccfcd1070" class="">I developed two key personas to help identify and better understand user needs and goals.</p><h3 id="223a3508-bfcd-80ae-8014-dee81adad0bf" class="">Existing Merge customer</h3><p id="223a3508-bfcd-80d6-aa04-dcc682e32afa" class="">This user is an integrations or IT admin at a current Merge customer. They are responsible for managing multiple Linked Accounts within Merge.</p><p id="222a3508-bfcd-80bc-abb8-fa4c6ac8efc0" class=""><strong>Needs &amp; Motivations:</strong></p><ul id="222a3508-bfcd-8019-b43e-c6db59488553" class="bulleted-list"><li style="list-style-type:disc">They need <strong>fast and reliable syncs</strong> so that their team has up-to-date data without long delays</li></ul><ul id="222a3508-bfcd-80b0-9ff0-fb0d9d31cef2" class="bulleted-list"><li style="list-style-type:disc">They value <strong>clear controls and transparency</strong> to see what filters are applied at any given time and easily adjust them if requirements change</li></ul><ul id="222a3508-bfcd-80c8-a459-c3ed8058f8d8" class="bulleted-list"><li style="list-style-type:disc">They’re busy, so they prefer <strong>defaults and clear presets</strong> that <em>just work</em> for 80% of cases but still allow overrides for edge cases</li></ul><h3 id="223a3508-bfcd-80c0-a6ea-e24b71b5a80e" class="">Enterprise prospect</h3><p id="223a3508-bfcd-80ce-a0c4-dcf848d444a9" class="">This user is a security or compliance decision-maker at a large enterprise company evaluating Merge as a solution for integrations. They are responsible for ensuring that any vendor can meet strict data security and privacy requirements before signing a contract.</p><p id="222a3508-bfcd-8056-8a7d-cbe8a7d65199" class=""><strong>Needs &amp; Motivations:</strong></p><ul id="222a3508-bfcd-808b-9b1e-feb47a1791ca" class="bulleted-list"><li style="list-style-type:disc">They need to guarantee that <strong>only approved data</strong> is ever pulled into Merge’s systems</li></ul><ul id="222a3508-bfcd-800a-a07c-cd5e84833ef6" class="bulleted-list"><li style="list-style-type:disc">They want <strong>granular control</strong> over what gets synced to avoid exposing sensitive PII</li></ul><ul id="222a3508-bfcd-8051-8cad-f67a776db7cc" class="bulleted-list"><li style="list-style-type:disc">They need <strong>flexibility for end-users to provide consent</strong> where required</li></ul><hr id="222a3508-bfcd-8024-b928-d49ab72150ce"/><h2 id="1f2a3508-bfcd-8049-996f-d06f7cf7feee" class="">Research</h2><p id="221a3508-bfcd-8053-834a-f93077659cdc" class="">We discovered that the existing Selective Sync feature had 79 active filters available, but many were <strong>completely unused</strong> by customers, and many more were <strong>only used by a single customer</strong>. </p><p id="221a3508-bfcd-803d-8178-f8985a4aaa16" class="">Through customer conversations, we uncovered three main insights:</p><ul id="221a3508-bfcd-80bd-9966-f2f3bd528908" class="bulleted-list"><li style="list-style-type:disc">Many users didn’t even know they could set up filters because the feature was <strong>buried and hard to find</strong></li></ul><ul id="221a3508-bfcd-809f-99b5-fc8a891722ca" class="bulleted-list"><li style="list-style-type:disc">Users who <em>did</em> find it often didn’t use it because the <strong>filters they needed didn’t exist</strong> for their specific use case</li></ul><ul id="221a3508-bfcd-80ee-a4ec-d4660f02c1c5" class="bulleted-list"><li style="list-style-type:disc">Most customers only needed recent data from just the last <strong>6–12 months</strong></li></ul><p id="221a3508-bfcd-8065-93d8-f65527e24bab" class="">Building these filters is technically complex: each one must be created individually by Merge’s platform engineering team, since the filter logic depends on how each third-party integration works. This meant we needed to be strategic, starting with the <strong>highest impact integrations</strong> in a single category to prove value before investing more engineering time to expand coverage.</p><p id="221a3508-bfcd-80b4-9000-ee3584d0f345" class="">To prioritize, we ran data analyses to identify which categories contained the most stale data. <strong>Ticketing</strong> and <strong>ATS</strong> stood out as the biggest opportunities, with a high percentage of data older than a year that could be excluded by filtering. We then mapped the integrations within those categories with the highest usage to ensure our initial filters would benefit as many customers as possible.</p><table id="221a3508-bfcd-8040-9166-f23faf297c56" class="simple-table"><thead class="simple-table-header"><tr id="221a3508-bfcd-8055-b7f8-f10de28a7bb8"><th id="T&gt;G|" class="simple-table-header-color simple-table-header" style="width:141.2px">Common Model</th><th id="\\H{" class="simple-table-header-color simple-table-header" style="width:180.1953125px">Total rows stored by Merge</th><th id="[vH&gt;" class="simple-table-header-color simple-table-header" style="width:141.2px">% before Jan 2024</th><th id=":nKE" class="simple-table-header-color simple-table-header" style="width:141.1953125px">% before Jan 2023</th><th id="IIQm" class="simple-table-header-color simple-table-header" style="width:141.2px"># before Jan 2023</th></tr></thead><tbody><tr id="221a3508-bfcd-8055-95a6-ddd6d89dcdec"><td id="T&gt;G|" class="" style="width:141.2px">TCKT Tickets</td><td id="\\H{" class="" style="width:180.1953125px">139,450,053</td><td id="[vH&gt;" class="" style="width:141.2px">84%</td><td id=":nKE" class="" style="width:141.1953125px">64%</td><td id="IIQm" class="" style="width:141.2px">50M</td></tr><tr id="221a3508-bfcd-8032-b942-f81ef0dc19e4"><td id="T&gt;G|" class="" style="width:141.2px">ATS Candidates</td><td id="\\H{" class="" style="width:180.1953125px">158,436,710</td><td id="[vH&gt;" class="" style="width:141.2px">84%</td><td id=":nKE" class="" style="width:141.1953125px">55%</td><td id="IIQm" class="" style="width:141.2px">71M</td></tr><tr id="221a3508-bfcd-807c-acba-e7ba899d1fc0"><td id="T&gt;G|" class="" style="width:141.2px">CRM Contacts</td><td id="\\H{" class="" style="width:180.1953125px">116,554,310</td><td id="[vH&gt;" class="" style="width:141.2px">—</td><td id=":nKE" class="" style="width:141.1953125px">—</td><td id="IIQm" class="" style="width:141.2px">—</td></tr><tr id="221a3508-bfcd-805b-830f-e3e2fbd28d83"><td id="T&gt;G|" class="" style="width:141.2px">ACCT Invoices</td><td id="\\H{" class="" style="width:180.1953125px">37,186,522 (low impact)</td><td id="[vH&gt;" class="" style="width:141.2px">—</td><td id=":nKE" class="" style="width:141.1953125px">—</td><td id="IIQm" class="" style="width:141.2px">—</td></tr></tbody></table><p id="221a3508-bfcd-80f7-a014-c87cf9de7d76" class="">Numbers as of July 2024</p><figure id="221a3508-bfcd-8065-9ccc-eb2827a7078e" class="image"><a href="Selective%20Sync%201dda3508bfcd800280b0f856729ce96f/Screenshot_2025-06-29_at_3.39.45_PM.png"><img style="width:2358px" src="Selective%20Sync%201dda3508bfcd800280b0f856729ce96f/Screenshot_2025-06-29_at_3.39.45_PM.png"/></a></figure><p id="221a3508-bfcd-80ae-947b-df15c5ea04a0" class=""><strong>Ticketing high usage integrations:</strong> Jira, Zendesk, Clickup, Freshdesk, Asana, Intercom, Linear, Trello, Jira Service Management, Github Issues</p><hr id="21fa3508-bfcd-80be-b158-dd467dd02ebe"/><h2 id="1f2a3508-bfcd-8002-96ae-f3bfba153e8e" class="">Ideation &amp; Solution</h2><p id="225a3508-bfcd-8072-b25e-dc515d3b3645" class="">To solve the problems and user needs we uncovered, I worked with the product and engineering to deliver a more visible, flexible, and scalable filtering experience. The redesigned Selective Sync combines clearer placement in the product, research-backed defaults, flexible user controls, and new internal tools to serve enterprise customers more securely and efficiently.</p><h3 id="221a3508-bfcd-80dc-bb7e-eb4619c27b72" class=""><strong>1. Selective Sync tab in each Linked Account</strong></h3><p id="221a3508-bfcd-8079-949f-ec1ca48e693f" class="">The Selective Sync feature was previously hidden inside each </p><p id="222a3508-bfcd-80c9-b7e5-c4605952d578" class="">We added a dedicated Selective Sync tab within each Linked Account to make the feature more visible. Users can now see and manage all filters applied to an account in one place — giving them a clear, at-a-glance view and easy configuration.</p><p id="221a3508-bfcd-805a-b4af-cc6a8d7a794f" class="">🖼️ [image of LA dashboard]</p><h3 id="221a3508-bfcd-80e3-b708-c79abf7a66d6" class="">2. Default timestamp filters</h3><p id="221a3508-bfcd-8001-9201-f077008c7306" class="">We introduced default timestamp filters that apply automatically when an account is connect to filter out records older than a given date. This reduces initial sync times by excluding stale data up front and increases Selective Sync adoption by applying best-practice filters without requiring any manual setup. While these filters apply automatically to new accounts, users still have the flexibility to adjust or override them at the organization or account level.</p><p id="221a3508-bfcd-8067-a541-dff6458ac97e" class="">As mentioned in the previous section, we launched this feature with just the Ticketing category because of engineering bandwidth constraints. The goal is to eventually add default filters for all categories. </p><p id="221a3508-bfcd-80d1-a814-eb27cb4c71f9" class=""><strong>Plan gating and upselling</strong></p><p id="221a3508-bfcd-8011-9e78-fa7284df897c" class="">Although Selective Sync is an Enterprise plan feature, we implemented default timestamp filters for all Merge users to reduce infrastructure costs. This became an opportunity to upsell and encourage Free and Launch customers to upgrade:</p><ul id="221a3508-bfcd-809e-b18f-e302f64983c9" class="bulleted-list"><li style="list-style-type:disc">On Free and Launch plans, customers can adjust the default date range in the dashboard, but can’t delete the filters or add other filter types.</li></ul><p id="222a3508-bfcd-8080-80dd-df3331e69942" class="">🖼️ [free/launch prototypes]</p><ul id="221a3508-bfcd-8060-958b-f96e52cea1c1" class="bulleted-list"><li style="list-style-type:disc">On the Enterprise plan, customers and end users have full flexibility: they can edit, remove, or add any filters they need.</li></ul><p id="222a3508-bfcd-808b-98d2-e1a1b6e2fbca" class="">🖼️ [enterprise prototypes]</p><p id="221a3508-bfcd-803e-bfff-c9d3a0976bcd" class=""><strong>Relative timestamps</strong></p><p id="221a3508-bfcd-8062-9469-cc712f827f09" class="">Due to engineering limitations, we determined that it made the most sense for default organization filters to have relative timestamps, such as 6 months or 1 year, but for the same filter to be static when applied to a specific account, based on when the account is connected.</p><p id="221a3508-bfcd-80e6-889e-d22e8d948c97" class="">🖼️ [image of flow chart]</p><p id="222a3508-bfcd-803d-b743-c8820bf73857" class=""><strong>Frigade announcement modal</strong></p><p id="222a3508-bfcd-80c0-b101-c3cf080883ee" class="">To ensure customers knew exactly what was happening, we added a modal in the dashboard using <a href="https://docs.frigade.com/component/announcement">Frigade’s announcement component</a> to notify users of the new default filters. This increased visibility and made sure there were no surprises for customers when syncing their data.</p><p id="222a3508-bfcd-80dd-84f2-cdf314bf0df8" class="">🖼️ [image of dashboard modal]</p><h3 id="221a3508-bfcd-808d-a2db-e44a6fc78611" class=""><strong>3. User-Configured values in Merge Link</strong></h3><p id="221a3508-bfcd-807c-81dc-de6206e762fe" class="">To give customers maximum flexibility, we also added support for <strong>user-configured filters</strong>. This allows end users to control exactly what data is synced by setting their own filter criteria when connecting their account in Merge Link. A customer can choose <em><strong>is user configured</strong></em> as their filter type to let each of their end users decide what data should sync based on their specific needs. This approach makes Selective Sync even more scalable and privacy-friendly for security-conscious customers.</p><p id="222a3508-bfcd-80bc-b7c3-e7a255a56445" class="">🖼️ [Merge Link prototype]</p><h3 id="221a3508-bfcd-80be-8df7-d1616b8a59f3" class=""><strong>4. Internal Filter Builder</strong></h3><p id="221a3508-bfcd-8044-aefa-e7800e70950b" class="">We developed a new internal Filter Builder tool for Merge’s platform engineers to more easily build and maintain filters for new data models and integrations, helping scale support as the feature grows. This is a separate project that is available <a href="mailto:hayleymye@gmail.com">upon request</a>. </p><hr id="21fa3508-bfcd-803e-bd17-e3be54f318c5"/><h2 id="1f2a3508-bfcd-80c3-9abc-c7cefe553a16" class="">Final Design</h2><p id="225a3508-bfcd-8084-90dd-ecd981e526b6" class="">The final redesigned product brings all these solutions together into a cohesive experience that balances automation with control. The new Selective Sync tab makes filters discoverable and easy to manage for every Linked Account. Default timestamp filters now apply automatically to help customers sync only relevant data, with clear plan-based permissions that drive upsell opportunities. The Frigade announcement modal keeps users informed, so there are no surprises when new defaults are rolled out. </p><p id="225a3508-bfcd-806e-b8a3-cfbda883a4aa" class="">For advanced needs, end users can configure their own filters directly in Merge Link for maximum flexibility, and the new internal Filter Builder enables Merge’s platform engineers to efficiently expand filter coverage as customer needs grow. Together, these improvements make Selective Sync a powerful yet easy-to-use feature that scales with Merge’s enterprise customers.</p><p id="225a3508-bfcd-80d4-a3bf-d5117d3938f3" class="">🖼️ Figma prototype</p><hr id="21fa3508-bfcd-8066-810e-cab92fd009ae"/><h2 id="1f2a3508-bfcd-8026-83ba-e3cb75ee6aab" class="">Insights &amp; Impact</h2><h3 id="225a3508-bfcd-80c1-81c7-c2a34eec0c00" class="">What We Learned: </h3><ul id="225a3508-bfcd-804f-9783-f9365a173b9b" class="bulleted-list"><li style="list-style-type:disc"><strong>Balancing flexibility, privacy, and performance is critical.</strong> Default filters save time and reduce costs, but giving users the ability to adjust or override them is what builds trust and supports enterprise security and compliance needs</li></ul><ul id="225a3508-bfcd-8032-a25f-fdf94b8de080" class="bulleted-list"><li style="list-style-type:disc"><strong>Visibility and simplicity drive adoption.</strong> Even the best filters won’t be used if they’re buried or too complicated to set up. Making Selective Sync more discoverable and easy to configure turned a rarely used feature into one that now delivers real performance and cost benefits for Merge and its customers</li></ul><h3 id="225a3508-bfcd-808c-bdf6-e49414e9f6c3" class="">Results</h3><ul id="225a3508-bfcd-80a2-9d4a-d76773017824" class="bulleted-list"><li style="list-style-type:disc">Ticketing default filters <strong>reduced initial sync times by 30%</strong></li></ul><ul id="225a3508-bfcd-8088-a8ba-fc133befe1c8" class="bulleted-list"><li style="list-style-type:disc">Merge secured contracts with <strong>major privacy-sensitive customers</strong></li></ul><ul id="225a3508-bfcd-800a-850c-c8f309989321" class="bulleted-list"><li style="list-style-type:disc"><strong>Increased scalability</strong> of Selective Sync overall</li></ul><hr id="21fa3508-bfcd-8048-aa7c-c47a046ae6d4"/><h2 id="1f2a3508-bfcd-8083-aa3a-d8de763100e7" class="">Summary</h2><p id="21fa3508-bfcd-80a1-8f4a-c44a9a3070aa" class=""><strong>What I learned</strong>: Small defaults drive big impact — balancing flexibility with sensible defaults is key for enterprise usability.</p><p id="21fa3508-bfcd-807e-bc31-f9e288a7329f" class=""><strong>Did it go as expected?</strong>: Mostly — rollout was smooth but aligning the cross-functional team was challenging and required clear comms.</p><p id="21fa3508-bfcd-8095-82a6-da0aaab533f8" class=""><strong>What would I do differently?</strong>: I’d push for even more upfront customer validation to refine which filters matter most. With more time, we’d expand the Filter Builder for custom fields sooner to cover more advanced use cases.</p><p id="225a3508-bfcd-80a3-947a-de0b70e36c21" class="">
+</p><p id="225a3508-bfcd-80e5-a566-c04007f1bcc2" class="">
+</p><p id="1f2a3508-bfcd-800c-8ff5-f858a6cfc99e" class=""><strong>Pain Points:</strong></p><ul id="225a3508-bfcd-8045-a550-ddf1211323c7" class="bulleted-list"><li style="list-style-type:disc">Long initial sync times create downtime and make testing new integrations painful.</li></ul><ul id="225a3508-bfcd-8088-b58d-fac9cf556430" class="bulleted-list"><li style="list-style-type:disc">Manual filter setup was confusing in the old UX — they didn’t know what filters existed or how to configure them properly.</li></ul><ul id="225a3508-bfcd-8006-9ce2-d16b6396b7ad" class="bulleted-list"><li style="list-style-type:disc">Without easy filtering, they end up syncing huge datasets they don’t need, driving up costs and risk.</li></ul><p id="225a3508-bfcd-8090-9b5f-db4c880d8ac2" class=""><strong>How Selective Sync Redesign Solves for Them:</strong></p><p id="225a3508-bfcd-80a0-acee-c034a3659162" class="">The new <strong>Selective Sync tab</strong> makes filters discoverable and easy to manage. Default timestamp filters mean they get immediate time savings and data limits <em>without extra work</em>. And if needed, they can fine-tune filters to fit internal policies — all in a few clicks.</p><p id="225a3508-bfcd-8096-91b9-d670fd91ab0d" class="">
+</p><p id="225a3508-bfcd-80cc-bb5c-cdd66cffbec9" class=""><strong>Pain Points:</strong></p><ul id="225a3508-bfcd-8033-84d9-fca38cdd3600" class="bulleted-list"><li style="list-style-type:disc">The default “sync everything” model in integrations creates risk they can’t accept.</li></ul><ul id="225a3508-bfcd-8011-b490-e146c3bc5d48" class="bulleted-list"><li style="list-style-type:disc">They often block or delay adoption of new tools because vendors lack strong data controls.</li></ul><ul id="225a3508-bfcd-80f0-aee5-c727908fe468" class="bulleted-list"><li style="list-style-type:disc">They need to see that Merge’s controls are robust, easy to configure, and meet compliance standards.</li></ul><p id="225a3508-bfcd-80c5-a5f4-c290e373dd04" class=""><strong>How Selective Sync Redesign Solves for Them:</strong></p><p id="225a3508-bfcd-8083-92fa-d3a1f2e49a10" class="">The redesigned Selective Sync — with default filters, user-configured filters, and visible controls — gives them peace of mind that Merge won’t ingest more data than necessary. The Frigade announcement modal shows transparency. Plan gating ensures stronger controls for enterprise customers. Together, these improvements help unblock security sign-off and make it easier for Sales to close enterprise deals.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

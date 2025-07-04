@@ -9,6 +9,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="../style.css" />
   <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <script src="../scripts/modal.js"></script>
 </head>
 
 <body>
@@ -21,10 +22,369 @@
     <div class="section">
       <h1>Selective Sync</h1>
       <h4><a href="https://merge.dev" target="_blank" class="inline">Merge</a>, 2024</h4>
-      <p>Coming soon!</p>
+      <p>Empowering enterprise customers with smarter, scalable
+        data filtering to sync only what matters.</p>
+      <img src="../assets/selective-sync/hero.jpg" width="100%">
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">Project Overview</h2>
+      <p class="">To support and sell to larger enterprise customers,
+        Merge needed to be able to sync large amounts of customer data efficiently and securely. The existing
+        syncing process often pulled all available records, much of it irrelevant, resulting in long sync times,
+        higher costs, and unnecessary exposure of sensitive data.</p>
+      <p>I led the end-to-end redesign to make <a href="https://help.merge.dev/articles/9113654-selective-sync"
+          target="_blank" class="inline">Merge's Selective Sync</a> product a more
+        <strong>discoverable, useful, and scalable</strong> way to filter data shared with Merge.
+      </p>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">The Challenge</h2>
+      <p class="">Merge faced three main issues when working with
+        enterprise data:</p>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Performance</strong>: Initial syncs for an account could take 12+
+          hours due to large data volumes, during which time the customer and end user has no visibility into what
+          is happening</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Cost</strong>: Syncing unneeded data increased infrastructure and
+          security costs for Merge</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Privacy</strong>: Security-conscious customers needed granular
+          control to exclude sensitive PII (Personally Identifiable Information)</li>
+      </ul>
+      <p class="">Although Merge already offered a data filtering feature,
+        adoption was low because the filters were too limited and the user experience was confusing. My challenge
+        was to redesign Merge's filtering experience to <strong>increase adoption</strong> and limit the data that
+        Merge syncs to only <strong>recent, relevant data</strong>. </p>
+      <h3 class="">My Role</h3>
+      <p class=""><strong>I was the sole product designer on this
+          project</strong>, responsible for leading the end-to-end design process from user research to prototyping
+        and final handoff. I collaborated closely with a cross-functional team that included a product manager,
+        post-sales, platform engineers, and software engineers. </p>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">User Personas</h2>
+      <p class="">I developed two key personas to help identify and better
+        understand user needs and goals.</p>
+      <h3 class="">Existing Merge customer</h3>
+      <p class="">This user is an integrations or IT admin at a current
+        Merge customer. They are responsible for managing multiple Linked Accounts within Merge.</p>
+      <p class=""><strong>User needs:</strong></p>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They need <strong>fast and reliable syncs</strong> so that their team has
+          up-to-date data without long delays</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They value <strong>clear controls and transparency</strong> to see what
+          filters are applied at any given time and easily adjust them if requirements change</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They're busy, so they prefer <strong>defaults and clear presets</strong>
+          that <em>just work</em> for 80% of cases but still allow overrides for edge cases</li>
+      </ul>
+      <h3 class="">Enterprise prospect</h3>
+      <p class="">This user is a security or compliance decision-maker at
+        a large enterprise company evaluating Merge as a solution for integrations. They are responsible for
+        ensuring that any vendor can meet strict data security and privacy requirements before signing a contract.
+      </p>
+      <p class=""><strong>User needs:</strong></p>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They need to guarantee that <strong>only approved data</strong> is ever
+          pulled into Merge's systems</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They want <strong>granular control</strong> over what gets synced to avoid
+          exposing sensitive PII</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">They need <strong>flexibility for end-users to provide consent</strong>
+          where required</li>
+      </ul>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">Research</h2>
+      <p class="">We discovered that the existing Selective Sync feature
+        had 79 active filters available, but many were <strong>completely unused</strong> by customers, and many
+        more were <strong>only used by a single customer</strong>. </p>
+      <p class="">Through customer conversations, we uncovered three main
+        insights:</p>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">Many users didn't even know they could set up filters because the feature
+          was <strong>buried and hard to find</strong></li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">Users who <em>did</em> find it often didn't use it because the
+          <strong>filters they needed didn't exist</strong> for their specific use case
+        </li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">Most customers only needed recent data from just the last <strong>6–12
+            months</strong></li>
+      </ul>
+      <p class="">Building these filters is technically complex — each one
+        must be created individually by Merge's platform engineering team, since the filter logic depends on how
+        each third-party integration works. This meant we needed to be strategic, starting with the <strong>highest
+          impact integrations</strong> in a single category to prove value before investing more engineering time to
+        expand coverage.</p>
+      <p class="">To prioritize, we ran data analyses to identify which
+        categories contained the most stale data. <strong>Ticketing</strong> and <strong>ATS</strong> stood out as
+        the biggest opportunities, with a high percentage of data older than a year that could be excluded by
+        filtering. We then mapped the integrations within those categories with the highest usage to ensure our
+        initial filters would benefit as many customers as possible.</p>
+      <table class="simple-table">
+        <thead class="simple-table-header">
+          <tr>
+            <th class="simple-table-header-color simple-table-header">Common
+              Model</th>
+            <th class="simple-table-header-color simple-table-header">Total
+              rows stored by Merge</th>
+            <th class="simple-table-header-color simple-table-header">% before
+              Jan 2024</th>
+            <th class="simple-table-header-color simple-table-header">% before
+              Jan 2023</th>
+            <th class="simple-table-header-color simple-table-header"># before Jan
+              2023</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="">TCKT Tickets</td>
+            <td class="">139,450,053</td>
+            <td class="">84%</td>
+            <td class="">64%</td>
+            <td class="">50M</td>
+          </tr>
+          <tr>
+            <td class="">ATS Candidates</td>
+            <td class="">158,436,710</td>
+            <td class="">84%</td>
+            <td class="">55%</td>
+            <td class="">71M</td>
+          </tr>
+          <tr>
+            <td class="">CRM Contacts</td>
+            <td class="">116,554,310</td>
+            <td class="">—</td>
+            <td class="">—</td>
+            <td class="">—</td>
+          </tr>
+          <tr>
+            <td class="">ACCT Invoices</td>
+            <td class="">37,186,522 (low impact)</td>
+            <td class="">—</td>
+            <td class="">—</td>
+            <td class="">—</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Numbers as of July 2024</p>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/ticketing-integrations-chart.png', 'Ticketing high usage integrations: Jira, Zendesk, Clickup, Freshdesk, Asana, Intercom, Linear, Trello')">
+        <img src="../assets/selective-sync/ticketing-integrations-chart.png"
+          alt="bar chart of ticketing integratinos by number of Linked Accounts"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Ticketing high usage integrations: Jira, Zendesk,
+          Clickup, Freshdesk, Asana, Intercom, Linear, Trello</p>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">Ideation &amp; Solution</h2>
+      <p class="">To solve the problems and user needs we uncovered, I
+        worked with the product and engineering to deliver a more visible, flexible, and scalable filtering
+        experience. The redesigned Selective Sync combines clearer placement in the product, research-backed
+        defaults, flexible user controls, and new internal tools to serve enterprise customers more securely and
+        efficiently.</p>
+      <h3 class=""><strong>1. Selective Sync tab in each Linked
+          Account</strong></h3>
+      <p class="">The sync filters feature was previously hidden inside each Common Model for a Linked Account. Users
+        had to expand each accordion and configure filters for each model separately.</p>
+      <div class="image-grid">
+        <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+          onclick="openModal('../assets/selective-sync/old-la-overview.jpg', 'Old design: Sync filters in Linked Account Overview')">
+          <img src="../assets/selective-sync/old-la-overview.jpg"
+            alt="Old design of Selective Sync filters in Linked Account Overview"
+            style="width: 100%; object-fit: contain;">
+          <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Old design: Sync filters in Linked Account
+            Overview</p>
+        </div>
+        <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+          onclick="openModal('../assets/selective-sync/old-la-filters.jpg', 'Old design: Edit sync filters in new screen')">
+          <img src="../assets/selective-sync/old-la-filters.jpg"
+            alt="Old design of editing Selective Sync filters in a new screen"
+            style="width: 100%; object-fit: contain;">
+          <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Old design: Edit sync filters in new screen</p>
+        </div>
+      </div>
+      <p class="">We added a dedicated Selective Sync tab within each
+        Linked Account to make the feature more visible. Users can now see and manage all filters applied to an
+        account in one place, giving them a clear at-a-glance view and easy configuration.</p>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/la-enterprise.gif', 'Adding Selective Sync filters for a Linked Account')">
+        <img src="../assets/selective-sync/la-enterprise.gif"
+          alt="gif of adding Selective Sync filters for a Linked Account" style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Adding Selective Sync filters for a Linked
+          Account</p>
+      </div>
+      <h3 class="">2. Default timestamp filters</h3>
+      <p class="">We introduced default timestamp filters that apply
+        automatically when an account is connect to filter out records older than a given date. This reduces initial
+        sync times by excluding stale data up front and increases Selective Sync adoption by applying best-practice
+        filters without requiring any manual setup. While these filters apply automatically to new accounts, users
+        still have the flexibility to adjust or override them at the organization or account level.</p>
+      <p class="">As mentioned in the previous section, we launched this
+        feature with just the Ticketing category because of engineering bandwidth constraints. The goal is to
+        eventually add default filters for all categories. </p>
+      <p class=""><strong>Plan gating and upselling</strong></p>
+      <p class="">Although Selective Sync is an Enterprise plan feature,
+        we implemented default timestamp filters for all Merge users to reduce infrastructure costs. This became an
+        opportunity to upsell and encourage Free and Launch customers to upgrade:</p>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">On Free and Launch plans, customers can adjust the default date range in
+          the dashboard, but can't delete the filters or add other filter types</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">On the Enterprise plan, customers and end users have full flexibility: they
+          can edit, remove, or add any filters they need</li>
+      </ul>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/la-free-launch.gif', 'Linked Account-level Selective Sync filters for Free/Launch plan')">
+        <img src="../assets/selective-sync/la-free-launch.gif"
+          alt="gif of Linked Account-level Selective Sync filters for Free/Launch plan"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Linked Account-level Selective Sync filters for
+          Free/Launch plan</p>
+      </div>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/org-free-launch.gif', 'Organization-level Selective Sync filters for Free/Launch plan')">
+        <img src="../assets/selective-sync/org-free-launch.gif"
+          alt="gif of organization-level Selective Sync filters for Free/Launch plan"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Organization-level Selective Sync filters for
+          Free/Launch plan</p>
+      </div>
+      <p class=""><strong>Relative timestamps</strong></p>
+      <p class="">Due to engineering limitations, we determined that it
+        made the most sense for default organization-wide filters to have relative timestamps, such as 6 months or 1
+        year, but for the same filter to be static when applied to a specific account, based on when the account is
+        connected.</p>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/org-free-launch.gif', 'Timestamps are based on time of linking')">
+        <img src="../assets/selective-sync/relative-flow-diagram.png"
+          alt="Flow diagram showing how timestamps are based on time of linking"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Timestamps are based on time of linking</p>
+      </div>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/org-enterprise.gif', 'Relative timestamps for organization-level filters (Enterprise plan)')">
+        <img src="../assets/selective-sync/org-enterprise.gif"
+          alt="gif of organization-level Selective Sync filters for Enterprise plan"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Relative timestamps for organization-level
+          filters (Enterprise plan)</p>
+      </div>
+      <p class=""><strong>Frigade announcement modal</strong></p>
+      <p class="">To ensure customers knew exactly what was happening, we
+        added a modal in the dashboard using <a href="https://docs.frigade.com/component/announcement" target="_blank"
+          class="inline">Frigade's
+          announcement component</a> to notify users of the new default filters. This increased visibility and made
+        sure there were no surprises for customers when syncing their data.</p>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/frigade-modal.jpg', 'Frigade announcement modal')">
+        <img src="../assets/selective-sync/frigade-modal.jpg" alt="Frigade announcement modal"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Frigade announcement modal</p>
+      </div>
+      <h3 class=""><strong>3. User-Configured values in Merge
+          Link</strong></h3>
+      <p class="">To give customers maximum flexibility, we also added
+        support for <strong>user-configured filters</strong>. This surfaces the filters in Merge Link and allows end
+        users to control exactly what data is
+        synced by setting their own values when connecting their account. A customer can
+        choose <em>is user configured</em> as their filter type to let each of their end users
+        decide what data should sync based on their specific needs. This approach makes Selective Sync even more
+        scalable and privacy-friendly for security-conscious customers.</p>
+      <div class="image-item" style="cursor: pointer; display: flex; flex-direction: column;"
+        onclick="openModal('../assets/selective-sync/link.png', 'Selective Sync in Merge Link')">
+        <img src="../assets/selective-sync/link.png" alt="Selective Sync in Merge Link"
+          style="width: 100%; object-fit: contain;">
+        <p style="margin-top: 8px; font-size: 0.8rem; color: #666666;">Selective Sync in Merge Link</p>
+      </div>
+      <h3 class=""><strong>4. Internal Filter Builder</strong></h3>
+      <p class="">We developed a new internal Filter Builder tool to enable
+        Merge's platform engineers to more easily build and maintain filters for new data models and integrations,
+        helping scale support as the feature grows. This is a separate project that is available <a
+          href="mailto:hayleymye@gmail.com" target="_blank" class="inline">upon request</a>. </p>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">Final Design</h2>
+      <p class="">The final redesigned product brings all these solutions
+        together into a cohesive experience that balances automation with control. The new Selective Sync tab makes
+        filters discoverable and easy to manage for every Linked Account. Default timestamp filters now apply
+        automatically to help customers sync only relevant data, with clear plan-based permissions that drive upsell
+        opportunities. The Frigade announcement modal keeps users informed, so there are no surprises when new
+        defaults are rolled out. </p>
+      <p class="">For advanced needs, end users can configure their own
+        filters directly in Merge Link for maximum flexibility, and the new internal Filter Builder enables Merge's
+        platform engineers to efficiently expand filter coverage as customer needs grow. Together, these
+        improvements make Selective Sync a powerful yet easy-to-use feature that scales with Merge's enterprise
+        customers.</p>
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450"
+        src="https://embed.figma.com/design/IpH45ra0U5OrK5r7V3x0q8/Case-Study---Selective-Sync?node-id=0-1&embed-host=share"
+        allowfullscreen></iframe>
+    </div>
+
+    <hr />
+
+    <div class="section">
+      <h2 class="">Insights &amp; Impact</h2>
+      <h3 class="">What We Learned: </h3>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Balancing flexibility, privacy, and performance is
+            critical.</strong> Default filters save time and reduce costs, but giving users the ability to adjust or
+          override them is what builds trust and supports enterprise security and compliance needs</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Visibility and simplicity drive adoption.</strong> Even the best
+          filters won't be used if they're buried or too complicated to set up. Making Selective Sync more
+          discoverable and easy to configure turned a rarely used feature into one that now delivers real
+          performance and cost benefits for Merge and its customers</li>
+      </ul>
+      <h3 class="">Results</h3>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">Ticketing default filters <strong>reduced initial sync times by
+            30%</strong></li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc">Merge secured contracts with <strong>major privacy-sensitive
+            customers</strong></li>
+      </ul>
+      <ul class="bulleted-list">
+        <li style="list-style-type:disc"><strong>Increased scalability</strong> of Selective Sync overall</li>
+      </ul>
     </div>
 
     <hr>
+
     <nav>
       <a class="nav" href="https://drive.google.com/file/d/1Db4muiipyI5Rl645pSvjpg58gsTP486j/view?usp=sharing"
         target="_blank">Resume</a>
@@ -34,6 +394,20 @@
     </nav>
 
   </main>
+
+  <!-- Modal -->
+  <div id="imageModal"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); z-index: 999999; overflow: hidden;">
+    <span
+      style="position: fixed; top: 20px; right: 30px; color: white; font-size: 30px; cursor: pointer; z-index: 1000000;"
+      onclick="closeModal()">&times;</span>
+    <div
+      style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 95%; height: 95%; z-index: 1000000;">
+      <img id="modalImage" style="max-width: 100%; max-height: 90%; object-fit: contain;">
+      <p id="modalCaption" style="color: white; margin-top: 20px; font-size: 1rem;"></p>
+    </div>
+  </div>
+
 </body>
 
 </html>
